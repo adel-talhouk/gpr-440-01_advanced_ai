@@ -12,9 +12,8 @@ public class WanderSteering : Steering
 {
     //Wander variables
     [Header("Wander Circle Properties")]
-    [Range(0.5f, 5.0f)] public float circleCenterDistance = 2.0f;
-    [Range(0.5f, 4.0f)] public float circleRadius = 1.0f;
-    [Range(0.1f, 4.0f)] public float timeToChangeDirections = 0.2f;
+    [Range(1.0f, 20.0f)] public float circleCenterDistance = 4.0f;
+    [Range(0.1f, 2.0f)] public float circleRadius = 1.0f;
 
     //Private data to calculate circle and point
     Vector2 circleCentre;

@@ -6,7 +6,7 @@ public class AIAgent : MonoBehaviour
 {
     //Steering information
     [Header("Steering Information")]
-    public float moveSpeed;
+    [Range(1.0f, 10.0f)] public float moveSpeed = 5f;
     public CompositeSteering compositeSteering;
     Vector2 headingVector;
 
