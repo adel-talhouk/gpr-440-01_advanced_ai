@@ -11,15 +11,16 @@ using UnityEngine;
 public class ObstacleAvoidanceSteering : Steering
 {
     //Obstacle avoidance information
-    [Range(5.0f, 50.0f)] public float detectionDistance = 15.0f;
-    [Range(1.0f, 50.0f)] public float avoidanceSpeed = 10.0f;
+    [Range(1.0f, 10.0f)] public float detectionDistance = 3.0f;
+    [Range(0.01f, 0.5f)] public float avoidanceStrength = 0.05f;
     Vector2 headingVector = Vector2.zero;
-    //public LayerMask obstacleLayer;
 
     public override Vector2 GetSteering(AIAgent agent)
     {
         //Cast a ray
-        RaycastHit2D obstacleDetected = Physics2D.Raycast(agent.transform.position, agent.transform.up, detectionDistance);
+        Vector3 startPos = agent.transform.GetChild(0).transform.position;
+        RaycastHit2D obstacleDetected = Physics2D.Raycast(startPos, agent.transform.up, detectionDistance);
+        Debug.DrawRay(startPos, agent.transform.up.normalized * detectionDistance, Color.green, 0.1f, true);
 
         //Check if the ray hit another agent or an obstacle
         if (obstacleDetected && (obstacleDetected.collider.CompareTag("AI_Agent") || obstacleDetected.collider.CompareTag("Obstacle")))
@@ -28,12 +29,14 @@ public class ObstacleAvoidanceSteering : Steering
             if (obstacleDetected.normal.x < 0)
             {
                 //Steer left
-                headingVector = new Vector2(-agent.moveSpeed * avoidanceSpeed, agent.moveSpeed * avoidanceSpeed);
+                headingVector = new Vector2(-agent.moveSpeed * avoidanceStrength, agent.moveSpeed * avoidanceStrength);
+                Debug.Log("Veering Left");
             }
             else    //Otherwise
             {
                 //Steer right
-                headingVector = new Vector2(agent.moveSpeed * avoidanceSpeed, agent.moveSpeed * avoidanceSpeed);
+                headingVector = new Vector2(agent.moveSpeed * avoidanceStrength, agent.moveSpeed * avoidanceStrength);
+                Debug.Log("Veering Right");
             }
         }
 

@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   steeringBehaviours:
   - {fileID: 11400000, guid: 51fab2ebcdf6c5c41a4363fe31402c92, type: 2}
+  - {fileID: 11400000, guid: e3aea25fca71eca468396015b57732d9, type: 2}
   correspondingWeights:
+  - 1
   - 1

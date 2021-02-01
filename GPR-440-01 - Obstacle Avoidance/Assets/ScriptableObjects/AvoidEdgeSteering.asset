@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76118b966bc448847a191862a460f562, type: 3}
-  m_Name: AvoidaEdgeSteering'
+  m_Name: AvoidEdgeSteering
   m_EditorClassIdentifier: 
   circleCentre: {x: 0, y: 0}
   circleRadius: 15
