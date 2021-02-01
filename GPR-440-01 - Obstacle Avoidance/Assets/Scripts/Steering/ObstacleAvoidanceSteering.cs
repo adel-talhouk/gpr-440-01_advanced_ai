@@ -13,30 +13,50 @@ public class ObstacleAvoidanceSteering : Steering
     //Obstacle avoidance information
     [Range(1.0f, 10.0f)] public float detectionDistance = 3.0f;
     [Range(0.01f, 0.5f)] public float avoidanceStrength = 0.05f;
+    [Range(10, 180)] public int raysSeparatingAngle = 45;
     Vector2 headingVector = Vector2.zero;
 
     public override Vector2 GetSteering(AIAgent agent)
     {
-        //Cast a ray
-        Vector3 startPos = agent.transform.GetChild(0).transform.position;
-        RaycastHit2D obstacleDetected = Physics2D.Raycast(startPos, agent.transform.up, detectionDistance);
-        Debug.DrawRay(startPos, agent.transform.up.normalized * detectionDistance, Color.green, 0.1f, true);
+        //Data for the rays
+        Transform firePointTransform = agent.transform.GetChild(0).transform;
+        Vector3 startPos;
+        Vector3 direction;
 
-        //Check if the ray hit another agent or an obstacle
-        if (obstacleDetected && (obstacleDetected.collider.CompareTag("AI_Agent") || obstacleDetected.collider.CompareTag("Obstacle")))
+        //Cast a ray (straight)
+        startPos = firePointTransform.position;
+        direction = firePointTransform.up;
+        RaycastHit2D obstacleDetected = Physics2D.Raycast(startPos, direction, detectionDistance);
+        Debug.DrawRay(startPos, direction.normalized * detectionDistance, Color.green, 0.1f, true);
+
+        //For the left and right rays
+        Vector3 angleDiff = new Vector3((raysSeparatingAngle / 2.0f * Mathf.Deg2Rad), 0f, 0f);
+
+        //Cast a ray (left)
+        direction = firePointTransform.up - angleDiff;
+        RaycastHit2D obstacleDetected1 = Physics2D.Raycast(startPos, direction, detectionDistance);
+        Debug.DrawRay(startPos, direction.normalized * detectionDistance, Color.red, 0.1f, true);
+
+        //Cast a ray (right)
+        direction = firePointTransform.up + angleDiff;                                                                  //BUG HERE, NOT CHANGING LIKE RED
+        RaycastHit2D obstacleDetected2 = Physics2D.Raycast(startPos, direction, detectionDistance);
+        Debug.DrawRay(startPos, direction.normalized * detectionDistance, Color.blue, 0.1f, true);
+
+        //Check if any ray hit another agent or an obstacle
+        if ((obstacleDetected && (obstacleDetected.collider.CompareTag("AI_Agent") || obstacleDetected.collider.CompareTag("Obstacle")))
+             || (obstacleDetected1 && (obstacleDetected1.collider.CompareTag("AI_Agent") || obstacleDetected1.collider.CompareTag("Obstacle")))
+             || (obstacleDetected && (obstacleDetected.collider.CompareTag("AI_Agent") || obstacleDetected.collider.CompareTag("Obstacle"))))
         {
             //If the normal is pointing to the left         | Inspired by https://youtu.be/PiYffouHvuk?t=567
-            if (obstacleDetected.normal.x < 0)
+            if (obstacleDetected.normal.x < 0 || obstacleDetected1.normal.x < 0  || obstacleDetected2.normal.x < 0)
             {
                 //Steer left
                 headingVector = new Vector2(-agent.moveSpeed * avoidanceStrength, agent.moveSpeed * avoidanceStrength);
-                Debug.Log("Veering Left");
             }
             else    //Otherwise
             {
                 //Steer right
                 headingVector = new Vector2(agent.moveSpeed * avoidanceStrength, agent.moveSpeed * avoidanceStrength);
-                Debug.Log("Veering Right");
             }
         }
 

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: AvoidEdgeSteering
   m_EditorClassIdentifier: 
   circleCentre: {x: 0, y: 0}
-  circleRadius: 15
+  circleRadius: 10
