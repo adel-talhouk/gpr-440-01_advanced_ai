@@ -34,21 +34,19 @@ public class ObstacleAvoidanceSteering : Steering
 
         //Cast a ray (left)
         direction = firePointTransform.up - angleDiff;
-        RaycastHit2D obstacleDetected1 = Physics2D.Raycast(startPos, direction, detectionDistance);
+        RaycastHit2D obstacleDetectedLeft = Physics2D.Raycast(startPos, direction, detectionDistance);
         Debug.DrawRay(startPos, direction.normalized * detectionDistance, Color.red, 0.1f, true);
 
         //Cast a ray (right)
         direction = firePointTransform.up + angleDiff;                                                                  //BUG HERE, NOT CHANGING LIKE RED
-        RaycastHit2D obstacleDetected2 = Physics2D.Raycast(startPos, direction, detectionDistance);
+        RaycastHit2D obstacleDetectedRight = Physics2D.Raycast(startPos, direction, detectionDistance);
         Debug.DrawRay(startPos, direction.normalized * detectionDistance, Color.blue, 0.1f, true);
 
-        //Check if any ray hit another agent or an obstacle
-        if ((obstacleDetected && (obstacleDetected.collider.CompareTag("AI_Agent") || obstacleDetected.collider.CompareTag("Obstacle")))
-             || (obstacleDetected1 && (obstacleDetected1.collider.CompareTag("AI_Agent") || obstacleDetected1.collider.CompareTag("Obstacle")))
-             || (obstacleDetected && (obstacleDetected.collider.CompareTag("AI_Agent") || obstacleDetected.collider.CompareTag("Obstacle"))))
+        //Check if the straight ray hit another agent or an obstacle
+        if (obstacleDetected && (obstacleDetected.collider.CompareTag("AI_Agent") || obstacleDetected.collider.CompareTag("Obstacle")))
         {
             //If the normal is pointing to the left         | Inspired by https://youtu.be/PiYffouHvuk?t=567
-            if (obstacleDetected.normal.x < 0 || obstacleDetected1.normal.x < 0  || obstacleDetected2.normal.x < 0)
+            if (obstacleDetected.normal.x < 0)
             {
                 //Steer left
                 headingVector = new Vector2(-agent.moveSpeed * avoidanceStrength, agent.moveSpeed * avoidanceStrength);
@@ -60,6 +58,19 @@ public class ObstacleAvoidanceSteering : Steering
             }
         }
 
+        //Check if the left ray hit another agent or an obstacle
+        if (obstacleDetectedLeft && (obstacleDetectedLeft.collider.CompareTag("AI_Agent") || obstacleDetectedLeft.collider.CompareTag("Obstacle")))
+        {
+            //Steer right
+            headingVector = new Vector2(agent.moveSpeed * avoidanceStrength, agent.moveSpeed * avoidanceStrength);
+        }
+
+        //Check if the right ray hit another agent or an obstacle
+        if (obstacleDetectedRight && (obstacleDetectedRight.collider.CompareTag("AI_Agent") || obstacleDetectedRight.collider.CompareTag("Obstacle")))
+        {
+            //Steer left
+            headingVector = new Vector2(-agent.moveSpeed * avoidanceStrength, agent.moveSpeed * avoidanceStrength);
+        }
         return headingVector;
     }
 }
