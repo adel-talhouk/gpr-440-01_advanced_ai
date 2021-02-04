@@ -45,6 +45,6 @@ public class CompositeSteering : Steering
             }
         }
 
-        return finalHeading;
+        return finalHeading.normalized;
     }
 }
