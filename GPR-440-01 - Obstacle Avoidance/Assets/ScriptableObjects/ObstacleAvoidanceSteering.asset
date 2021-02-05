@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93d3e9a04977f164e9bfb2676869a026, type: 3}
   m_Name: ObstacleAvoidanceSteering
   m_EditorClassIdentifier: 
-  detectionDistance: 1.91
-  avoidanceStrength: 3.11
-  raysSeparatingAngle: 162
+  detectionDistance: 2.5
+  avoidanceStrength: 1.3
+  raysSeparatingAngle: 90
   obstaclesLayer:
     serializedVersion: 2
     m_Bits: 64

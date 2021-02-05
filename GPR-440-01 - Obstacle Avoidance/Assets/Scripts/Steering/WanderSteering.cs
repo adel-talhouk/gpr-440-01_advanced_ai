@@ -45,8 +45,6 @@ public class WanderSteering : Steering
 
             //Go towards the point
             headingVector = pointOnCircle - (Vector2)agent.transform.position;
-            //headingVector.Normalize();
-            //headingVector *= agent.moveSpeed;
         }
 
         return headingVector.normalized;

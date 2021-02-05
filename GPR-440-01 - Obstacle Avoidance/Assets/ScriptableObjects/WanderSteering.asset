@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ffd716e0a654ec468af87513ff8276d, type: 3}
   m_Name: WanderSteering
   m_EditorClassIdentifier: 
-  circleCenterDistance: 11.5
+  circleCenterDistance: 10
   circleRadius: 0.75

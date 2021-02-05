@@ -110,7 +110,7 @@ public class ObstacleAvoidanceSteering : Steering
         Debug.DrawRay(startPos, direction.normalized * detectionDistance, Color.red, 0.01f, true);
 
         //Cast a ray (right)
-        direction = firePointTransform.up + angleDiff;                                                                  //BUG HERE, NOT CHANGING LIKE RED
+        direction = firePointTransform.up + angleDiff;
         RaycastHit2D obstacleDetectedRight = Physics2D.Raycast(startPos, direction.normalized, detectionDistance, obstaclesLayer);
         Debug.DrawRay(startPos, direction.normalized * detectionDistance, Color.blue, 0.01f, true);
 
@@ -119,14 +119,12 @@ public class ObstacleAvoidanceSteering : Steering
             if (obstacleDetected.normal.x < 0)
             {
                 //Steer left
-                headingVector = new Vector2(-avoidanceStrength, agent.moveSpeed / avoidanceStrength);
-                //headingVector = new Vector2(-avoidanceStrength, 0);
+                headingVector = new Vector2(-avoidanceStrength, 0);
             }
             else    //Otherwise
             {
                 //Steer right
-                headingVector = new Vector2(avoidanceStrength, agent.moveSpeed / avoidanceStrength);
-                //headingVector = new Vector2(avoidanceStrength, 0);
+                headingVector = new Vector2(avoidanceStrength, 0);
             }
         }
 
@@ -134,16 +132,14 @@ public class ObstacleAvoidanceSteering : Steering
         else if (obstacleDetectedLeft && (obstacleDetectedLeft.collider.CompareTag("AI_Agent") || obstacleDetectedLeft.collider.CompareTag("Obstacle")))
         {
             //Steer right
-            headingVector = new Vector2(agent.moveSpeed * avoidanceStrength, agent.moveSpeed / avoidanceStrength);
-            //headingVector = new Vector2(agent.moveSpeed * avoidanceStrength, 0);
+            headingVector = new Vector2(agent.moveSpeed * avoidanceStrength, 0);
         }
 
         //Check if the right ray hit another agent or an obstacle
         else if (obstacleDetectedRight && (obstacleDetectedRight.collider.CompareTag("AI_Agent") || obstacleDetectedRight.collider.CompareTag("Obstacle")))
         {
             //Steer left
-            headingVector = new Vector2(-agent.moveSpeed * avoidanceStrength, agent.moveSpeed / avoidanceStrength);
-            //headingVector = new Vector2(-agent.moveSpeed * avoidanceStrength, 0);
+            headingVector = new Vector2(-agent.moveSpeed * avoidanceStrength, 0);
         }
 
         return headingVector;
