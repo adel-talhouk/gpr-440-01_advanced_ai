@@ -1449,6 +1449,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 88929249437584000, guid: ead7df01c0dd3554eab5cb0e9d8b0fc7, type: 3}
+      propertyPath: moveSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 88929249437584013, guid: ead7df01c0dd3554eab5cb0e9d8b0fc7, type: 3}
       propertyPath: m_Name
       value: AI_Agent
