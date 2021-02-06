@@ -127,9 +127,10 @@ public class ObstacleAvoidanceSteering : Steering
         //Cast a ray (straight)
         rayDirection = midFirePoint.up * detectionDistance;
         RaycastHit2D obstacleDetected = Physics2D.Raycast(midFirePoint.position, midFirePoint.up, detectionDistance, obstaclesLayer);
-        //Debug.DrawRay(midFirePoint.position, rayDirection, Color.green, 0.01f, true);
+        Debug.DrawRay(midFirePoint.position, rayDirection, Color.green, 0.01f, true);
         rayPoints[0] = midFirePoint.position;
-        rayPoints[1] = rayDirection;
+        Debug.Log("True Ray Direction: " + rayDirection);
+        rayPoints[1] = midFirePoint.position + /*midFirePoint.transform.TransformDirection(*/rayDirection;
         midLineRenderer.SetPositions(rayPoints);
 
         //Set the rotations
@@ -141,17 +142,17 @@ public class ObstacleAvoidanceSteering : Steering
         rayDirection = leftFirePoint.up * detectionDistance;
         RaycastHit2D obstacleDetectedLeft = Physics2D.Raycast(leftFirePoint.position, leftFirePoint.up, detectionDistance * sideRaysLengthMultiplier, obstaclesLayer);
         //Debug.DrawRay(leftFirePoint.position, rayDirection * sideRaysLengthMultiplier, Color.red, 0.01f, true);
-        rayPoints[0] = leftFirePoint.position;
-        rayPoints[1] = rayDirection * sideRaysLengthMultiplier;
-        leftLineRenderer.SetPositions(rayPoints);
+        //rayPoints[0] = leftFirePoint.position;
+        //rayPoints[1] = rayDirection * sideRaysLengthMultiplier;
+        //leftLineRenderer.SetPositions(rayPoints);
 
         //Cast a ray (right)
         rayDirection = rightFirePoint.up * detectionDistance;
         RaycastHit2D obstacleDetectedRight = Physics2D.Raycast(rightFirePoint.position, rightFirePoint.up, detectionDistance * sideRaysLengthMultiplier, obstaclesLayer);
         //Debug.DrawRay(rightFirePoint.position, rayDirection * sideRaysLengthMultiplier, Color.blue, 0.01f, true);
-        rayPoints[0] = rightFirePoint.position;
-        rayPoints[1] = rayDirection * sideRaysLengthMultiplier;
-        rightLineRenderer.SetPositions(rayPoints);
+        //rayPoints[0] = rightFirePoint.position;
+        //rayPoints[1] = rayDirection * sideRaysLengthMultiplier;
+        //rightLineRenderer.SetPositions(rayPoints);
 
         //For avoidance
         headingVector = Vector2.zero;
