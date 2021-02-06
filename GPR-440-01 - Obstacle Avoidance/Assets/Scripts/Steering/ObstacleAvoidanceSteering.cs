@@ -93,6 +93,9 @@ public class ObstacleAvoidanceSteering : Steering
     Transform midFirePoint;
     Transform leftFirePoint;
     Transform rightFirePoint;
+    LineRenderer midLineRenderer;
+    LineRenderer leftLineRenderer;
+    LineRenderer rightLineRenderer;
     bool hasFoundFirePoints = false;        //For efficiency
 
     Vector2 headingVector = Vector2.zero;
@@ -102,18 +105,32 @@ public class ObstacleAvoidanceSteering : Steering
         //Find the fire points
         if (!hasFoundFirePoints)
         {
+            //Fire points
             midFirePoint = agent.transform.Find("FirePoint_Centre");
             leftFirePoint = agent.transform.Find("FirePoint_Left");
             rightFirePoint = agent.transform.Find("FirePoint_Right");
+
+            //Line renderers
+            midLineRenderer = midFirePoint.GetComponent<LineRenderer>();
+            leftLineRenderer = leftFirePoint.GetComponent<LineRenderer>();
+            rightLineRenderer = rightFirePoint.GetComponent<LineRenderer>();
 
             //Null check on the transforms
             if (midFirePoint && leftFirePoint && rightFirePoint)
                 hasFoundFirePoints = true;  //Efficiency
         }
 
+        //Ray direction and visualisation
+        Vector3 rayDirection;
+        Vector3[] rayPoints = new Vector3[2];
+
         //Cast a ray (straight)
+        rayDirection = midFirePoint.up * detectionDistance;
         RaycastHit2D obstacleDetected = Physics2D.Raycast(midFirePoint.position, midFirePoint.up, detectionDistance, obstaclesLayer);
-        Debug.DrawRay(midFirePoint.position, midFirePoint.up * detectionDistance, Color.green, 0.01f, true);
+        //Debug.DrawRay(midFirePoint.position, rayDirection, Color.green, 0.01f, true);
+        rayPoints[0] = midFirePoint.position;
+        rayPoints[1] = rayDirection;
+        midLineRenderer.SetPositions(rayPoints);
 
         //Set the rotations
         float angleOffset = raysSeparatingAngle / 2.0f;
@@ -121,12 +138,20 @@ public class ObstacleAvoidanceSteering : Steering
         rightFirePoint.localRotation = Quaternion.Euler(0f, 0f, angleOffset);
 
         //Cast a ray (left)
+        rayDirection = leftFirePoint.up * detectionDistance;
         RaycastHit2D obstacleDetectedLeft = Physics2D.Raycast(leftFirePoint.position, leftFirePoint.up, detectionDistance * sideRaysLengthMultiplier, obstaclesLayer);
-        Debug.DrawRay(leftFirePoint.position, leftFirePoint.up * detectionDistance * sideRaysLengthMultiplier, Color.red, 0.01f, true);
+        //Debug.DrawRay(leftFirePoint.position, rayDirection * sideRaysLengthMultiplier, Color.red, 0.01f, true);
+        rayPoints[0] = leftFirePoint.position;
+        rayPoints[1] = rayDirection * sideRaysLengthMultiplier;
+        leftLineRenderer.SetPositions(rayPoints);
 
         //Cast a ray (right)
+        rayDirection = rightFirePoint.up * detectionDistance;
         RaycastHit2D obstacleDetectedRight = Physics2D.Raycast(rightFirePoint.position, rightFirePoint.up, detectionDistance * sideRaysLengthMultiplier, obstaclesLayer);
-        Debug.DrawRay(rightFirePoint.position, rightFirePoint.up * detectionDistance * sideRaysLengthMultiplier, Color.blue, 0.01f, true);
+        //Debug.DrawRay(rightFirePoint.position, rayDirection * sideRaysLengthMultiplier, Color.blue, 0.01f, true);
+        rayPoints[0] = rightFirePoint.position;
+        rayPoints[1] = rayDirection * sideRaysLengthMultiplier;
+        rightLineRenderer.SetPositions(rayPoints);
 
         //For avoidance
         headingVector = Vector2.zero;
