@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ObstacleAvoidanceSteering
   m_EditorClassIdentifier: 
   detectionDistance: 2.75
-  avoidanceStrength: 3
+  avoidanceStrength: 2.15
   sideRaysLengthMultiplier: 0.75
   raysSeparatingAngle: 90
   obstaclesLayer:
