@@ -159,12 +159,12 @@ public class ObstacleAvoidanceSteering : Steering
             if (obstacleDetected.normal.x < 0)
             {
                 //Steer left
-                headingVector = new Vector2(-avoidanceStrength, 0);
+                headingVector = new Vector2(-avoidanceStrength, 0f);
             }
             else    //Otherwise
             {
                 //Steer right
-                headingVector = new Vector2(avoidanceStrength, 0);
+                headingVector = new Vector2(avoidanceStrength, 0f);
             }
         }
 
@@ -172,14 +172,14 @@ public class ObstacleAvoidanceSteering : Steering
         else if (obstacleDetectedLeft)
         {
             //Steer right
-            headingVector = new Vector2(agent.moveSpeed * avoidanceStrength, 0);
+            headingVector = new Vector2(avoidanceStrength / 2f, 0f);
         }
 
         //Check if the right ray hit another agent or an obstacle
         else if (obstacleDetectedRight)
         {
             //Steer left
-            headingVector = new Vector2(-agent.moveSpeed * avoidanceStrength, 0);
+            headingVector = new Vector2(-avoidanceStrength / 2f, 0f);
         }
 
         return headingVector;
