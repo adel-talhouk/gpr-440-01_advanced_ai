@@ -23,6 +23,11 @@ public class AIAgent : MonoBehaviour
     int numOfDeaths;
     Vector3 startingPosition;
 
+    //Damage-related
+    SpriteRenderer spriteRenderer;
+    Color originalColour;
+    Animator cameraAnimator;
+
     void Start()
     {
         //Start with the max health
@@ -37,6 +42,13 @@ public class AIAgent : MonoBehaviour
 
         //Starting position
         startingPosition = transform.position;
+
+        //Sprite renderer and original colour
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColour = spriteRenderer.color;
+
+        //Camera animator
+        cameraAnimator = FindObjectOfType<Camera>().GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -56,6 +68,16 @@ public class AIAgent : MonoBehaviour
         //Update damage text
         healthDisplayText.text = "Health: " + currentHealth;
 
+        //Show that damage was taken
+        StartCoroutine(IndicateDamage());
+
+        //Camera shake
+        int randomCameraShake = Random.Range(0, 2);
+        if (randomCameraShake == 0)
+            cameraAnimator.SetTrigger("cameraShake0");
+        else
+            cameraAnimator.SetTrigger("cameraShake1");
+
         //If they die
         if (currentHealth <= 0)
         {
@@ -64,6 +86,9 @@ public class AIAgent : MonoBehaviour
 
             //Random rotation
             transform.rotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
+
+            //Camera reset animation
+            cameraAnimator.SetTrigger("cameraReset");
 
             //Reset health
             currentHealth = startingHealth;
@@ -75,5 +100,12 @@ public class AIAgent : MonoBehaviour
             healthDisplayText.text = "Health: " + currentHealth;
             deathCountDisplayText.text = "Death count: " + numOfDeaths;
         }
+    }
+
+    IEnumerator IndicateDamage()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.color = originalColour;
     }
 }
