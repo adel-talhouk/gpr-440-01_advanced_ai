@@ -14,25 +14,15 @@ public class ObstacleAvoidanceSteering : Steering
     Transform firePoint;
     LineRenderer lineRenderer;
 
-    bool hasFoundFirePoint = false;        //For efficiency
-
     Vector2 headingVector = Vector2.zero;
 
-    public override Vector2 GetSteering(AIAgent agent)
+    public override Vector2 GetSteering(AIAgent agent, List<Transform> neighbours, FlockManager flock)
     {
-        //Find the fire points
-        if (!hasFoundFirePoint)
-        {
-            //Fire points
-            firePoint = agent.transform.Find("FirePoint");
+        //Fire point
+        firePoint = agent.transform;
 
-            //Line renderers
-            lineRenderer = firePoint.GetComponent<LineRenderer>();
-
-            //Null check on the transform
-            if (firePoint)
-                hasFoundFirePoint = true;  //Efficiency
-        }
+        //Line renderer
+        lineRenderer = firePoint.GetComponent<LineRenderer>();  //Getting the line renderer each time is not efficient, need a better way to do this
 
         //Ray direction and visualisation
         Vector3 rayDirection;

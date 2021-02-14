@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aff3c45a5921eb14ca5091fc33d2628f, type: 3}
+  m_Name: FLOCKING_OBSTACLE_AVOIDANCE
+  m_EditorClassIdentifier: 
+  steeringBehaviours:
+  - {fileID: 11400000, guid: 91aaa59719f1a4e43a2e650264a61c4e, type: 2}
+  - {fileID: 11400000, guid: bc8b5c42f70ac664b9b163379df209c7, type: 2}
+  - {fileID: 11400000, guid: 9a3fe6c3794009b4282866494f1e751a, type: 2}
+  - {fileID: 11400000, guid: eb5b59300ff062f4b8bf6f42f098f950, type: 2}
+  - {fileID: 11400000, guid: 32d2496e66af9ed4587a374619f3ba85, type: 2}
+  correspondingWeights:
+  - 0.648
+  - 0.399
+  - 0.56
+  - 1
+  - 0.418

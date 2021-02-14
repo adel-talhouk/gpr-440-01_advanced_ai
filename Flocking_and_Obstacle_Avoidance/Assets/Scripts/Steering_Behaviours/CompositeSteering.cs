@@ -11,9 +11,9 @@ public class CompositeSteering : Steering
 {
     //The steering behaviours and their associated weights
     public Steering[] steeringBehaviours;
-    public float[] correspondingWeights;
+    [Range(0.1f, 1.0f)] public float[] correspondingWeights;
 
-    public override Vector2 GetSteering(AIAgent agent)
+    public override Vector2 GetSteering(AIAgent agent, List<Transform> neighbours, FlockManager flock)
     {
         //Safety check To ensure that the arrays are of the same size
         if (correspondingWeights.Length != steeringBehaviours.Length)
@@ -29,7 +29,7 @@ public class CompositeSteering : Steering
         for (int i = 0; i < steeringBehaviours.Length; i++)
         {
             //The current heading trajectory
-            Vector2 currentHeading = steeringBehaviours[i].GetSteering(agent) * correspondingWeights[i];
+            Vector2 currentHeading = steeringBehaviours[i].GetSteering(agent, neighbours, flock) * correspondingWeights[i];
 
             //Make sure the weight is respected
             if (currentHeading != Vector2.zero)

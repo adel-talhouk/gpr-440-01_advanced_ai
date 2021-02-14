@@ -5,5 +5,5 @@ using UnityEngine;
 public abstract class Steering : ScriptableObject
 {
     //GetSteering method will be implemented by the derived classes
-    public abstract Vector2 GetSteering(AIAgent agent);
+    public abstract Vector2 GetSteering(AIAgent agent, List<Transform> neighbours, FlockManager flock);
 }
