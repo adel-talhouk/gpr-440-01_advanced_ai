@@ -8,16 +8,16 @@ public class FlockManager : MonoBehaviour
     [Header("Boids Information")]
     public AIAgent agentPrefab;
     public CompositeSteering steering;
-    [Range(1.0f, 50.0f)] public float agentSpeed = 5.0f;
+    [Range(1.0f, 20.0f)] public float agentSpeed = 5.0f;
 
     //Boids spawning
     [Header("Boids Spawning Data")]
-    [Range(1, 250)] public int numOfInitialAgents = 25;
+    [Range(1, 250)] public int numOfInitialAgents = 50;
     [Range(1, 10)] public int agentSpawnMultiplier = 1;
 
     //Neighbours
     [Header("Neighbourhood Information")]
-    [Range(1.0f, 10.0f)] public float neighbourhoodRadius = 1.5f;
+    [Range(1.0f, 5.0f)] public float neighbourhoodRadius = 1.5f;
     [Range(0.0f, 1.0f)] public float avoidanceRadiusMultiplier = 0.5f;
 
     //Utility variables

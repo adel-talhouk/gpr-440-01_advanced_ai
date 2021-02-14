@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34bb21613ae51724ea345558923b09c8, type: 3}
   m_Name: ObstacleAvoidance
   m_EditorClassIdentifier: 
-  detectionDistance: 3
-  avoidanceStrength: 1
+  detectionDistance: 1
+  avoidanceStrength: 0.1
   obstaclesLayer:
     serializedVersion: 2
     m_Bits: 64

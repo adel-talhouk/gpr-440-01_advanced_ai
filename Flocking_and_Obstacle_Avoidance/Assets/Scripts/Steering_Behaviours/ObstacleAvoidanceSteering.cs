@@ -6,7 +6,7 @@ using UnityEngine;
 public class ObstacleAvoidanceSteering : Steering
 {
     //Obstacle avoidance information
-    [Range(1.0f, 10.0f)] public float detectionDistance = 3.0f;
+    [Range(0.5f, 2.0f)] public float detectionDistance = 1.0f;
     [Range(0.1f, 5.0f)] public float avoidanceStrength = 1.0f;
     public LayerMask obstaclesLayer;
 
@@ -50,6 +50,16 @@ public class ObstacleAvoidanceSteering : Steering
                 //Steer right
                 headingVector = new Vector2(avoidanceStrength, 0f);
             }
+
+            //Red line
+            lineRenderer.startColor = Color.red;
+            lineRenderer.endColor = Color.red;
+        }
+        else    //If no obstacle was detected
+        {
+            //Green line
+            lineRenderer.startColor = Color.green;
+            lineRenderer.endColor = Color.green;
         }
 
         return headingVector;
