@@ -22,7 +22,7 @@ public class ObstacleAvoidanceSteering : Steering
         firePoint = agent.transform;
 
         //Line renderer
-        lineRenderer = firePoint.GetComponent<LineRenderer>();  //Getting the line renderer each time is not efficient, need a better way to do this
+        lineRenderer = agent.LineRend;
 
         //Ray direction and visualisation
         Vector3 rayDirection;

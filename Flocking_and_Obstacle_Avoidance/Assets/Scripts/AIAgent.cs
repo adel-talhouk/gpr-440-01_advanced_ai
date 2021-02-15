@@ -5,14 +5,19 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class AIAgent : MonoBehaviour
 {
-    //The neighbourhood
+    //Components
     Collider2D col;
-    public Collider2D Neighbourhood { get { return col; } }
+    LineRenderer lineRenderer;
 
-    void Start()
+    //Accessors
+    public Collider2D Neighbourhood { get { return col; } }
+    public LineRenderer LineRend { get { return lineRenderer; } }
+
+    void Awake()
     {
-        //Get the collider 
+        //Get the components
         col = GetComponent<Collider2D>();
+        lineRenderer = GetComponent<LineRenderer>();
 
         //Make it a random colour
         Color randomColour = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
