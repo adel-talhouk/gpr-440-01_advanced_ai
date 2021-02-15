@@ -23,7 +23,11 @@ public class FlockManager : MonoBehaviour
     //Utility variables
     float squaredNeighbourhoodRadius;
     float squaredAvoidanceRadius;
+    int numOfAgents = 0;
+
+    //Accessors
     public float SquaredAvoidanceRadius { get { return squaredAvoidanceRadius; } }
+    public int NumOfAgents { get { return numOfAgents; } }
 
     const float AGENTSPAWNDENSITY = 0.08f;
     List<AIAgent> agentsList = new List<AIAgent>();
@@ -91,6 +95,7 @@ public class FlockManager : MonoBehaviour
                 );
             newAgent.name = "Agent " + i;
             agentsList.Add(newAgent);
+            numOfAgents++;
         }
     }
 }
