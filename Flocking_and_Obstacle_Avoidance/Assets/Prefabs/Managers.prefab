@@ -50,6 +50,7 @@ MonoBehaviour:
   agentSpawnMultiplier: 2
   neighbourhoodRadius: 1.5
   avoidanceRadiusMultiplier: 0.5
+  foodPrefab: {fileID: 546590559999604363, guid: fd8fa005d4b0cc54fb87c39206c94364, type: 3}
 --- !u!1 &696872593478545995
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frameRateDisplay: {fileID: 0}
+  numOfAgentsDisplay: {fileID: 0}
 --- !u!1 &4631189557976256403
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +119,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4631189557976256403}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

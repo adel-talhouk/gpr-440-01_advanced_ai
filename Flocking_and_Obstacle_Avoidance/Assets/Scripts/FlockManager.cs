@@ -20,15 +20,23 @@ public class FlockManager : MonoBehaviour
     [Range(1.0f, 5.0f)] public float neighbourhoodRadius = 1.5f;
     [Range(0.0f, 1.0f)] public float avoidanceRadiusMultiplier = 0.5f;
 
+    [Header("Misc.")]
+    public GameObject foodPrefab;
+
     //Utility variables
+    Vector2 foodPosition;
+    bool isFoodSpawned = false;
     float squaredNeighbourhoodRadius;
     float squaredAvoidanceRadius;
     int numOfAgents = 0;
 
     //Accessors
+    public Vector3 FoodPosition { get { return foodPosition; } }
+    public bool IsFoodSpawned {  get { return isFoodSpawned; } set { isFoodSpawned = value; } }
     public float SquaredAvoidanceRadius { get { return squaredAvoidanceRadius; } }
     public int NumOfAgents { get { return numOfAgents; } }
 
+    //Utility variable(s)
     const float AGENTSPAWNDENSITY = 0.08f;
     List<AIAgent> agentsList = new List<AIAgent>();
 
@@ -50,6 +58,16 @@ public class FlockManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SpawnAgents(numOfInitialAgents * agentSpawnMultiplier);
+        }
+
+        //Spawning food (only 1 at a time)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isFoodSpawned)
+        {
+            //Spawn the food at the click location
+            foodPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Instantiate(foodPrefab, foodPosition, Quaternion.identity);
+
+            isFoodSpawned = true;
         }
 
         //Iterate through all the boids
