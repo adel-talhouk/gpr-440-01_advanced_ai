@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: AvoidEdge
   m_EditorClassIdentifier: 
   center: {x: 0, y: 0}
-  radius: 21.1
+  radius: 26

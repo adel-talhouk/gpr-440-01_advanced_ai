@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ObstacleAvoidance
   m_EditorClassIdentifier: 
   detectionDistance: 1
-  avoidanceStrength: 2.5
+  avoidanceStrength: 3.5
   obstaclesLayer:
     serializedVersion: 2
     m_Bits: 64
