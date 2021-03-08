@@ -158,35 +158,35 @@ public class GridDebug : MonoBehaviour
 				DrawGrid(gridSize, Color.green, cellRadius);
 			}
 		}
-		
-		//if (curFlowField == null) { return; }
 
-		//GUIStyle style = new GUIStyle(GUI.skin.label);
-		//style.alignment = TextAnchor.MiddleCenter;
+        if (curFlowField == null) { return; }
 
-		//switch (curDisplayType)
-		//{
-		//	case FlowFieldDisplayType.CostField:
+        GUIStyle style = new GUIStyle(GUI.skin.label);
+        style.alignment = TextAnchor.MiddleCenter;
 
-		//		foreach (Cell curCell in curFlowField.grid)
-		//		{
-		//			Handles.Label(curCell.worldPosition, curCell.cost.ToString(), style);
-		//		}
-		//		break;
-				
-		//	case FlowFieldDisplayType.IntegrationField:
+        switch (curDisplayType)
+        {
+            case FlowFieldDisplayType.CostField:
+            {
+                foreach (Cell curCell in curFlowField.grid)
+                {
+                    Handles.Label(curCell.worldPosition, curCell.cost.ToString(), style);
+                }
+                break;
+            }
+            //	case FlowFieldDisplayType.IntegrationField:
+            //  {
+            //		foreach (Cell curCell in curFlowField.grid)
+            //		{
+            //			Handles.Label(curCell.worldPosition, curCell.bestCost.ToString(), style);
+            //		}
+            //		break;
+            //  }
+            default:
+                break;
+        }
 
-		//		foreach (Cell curCell in curFlowField.grid)
-		//		{
-		//			Handles.Label(curCell.worldPosition, curCell.bestCost.ToString(), style);
-		//		}
-		//		break;
-				
-		//	default:
-		//		break;
-		//}
-		
-	}
+    }
 
 	private void DrawGrid(Vector2Int drawGridSize, Color drawColor, float drawCellRadius)
 	{

@@ -9,11 +9,19 @@ public class GridController : MonoBehaviour
     public FlowField currentFlowField;
     public GridDebug gridDebug;
 
+    [Header("Terrain Costs")]
+    public byte gravelCost = 3;
+    public byte mountainCost = 8;
+
     void InitFlowField()
     {
         currentFlowField = new FlowField(cellRadius, gridSize);
         currentFlowField.CreateGrid();
         gridDebug.SetFlowField(currentFlowField);
+
+        //Set costs
+        currentFlowField.gravelCost = gravelCost;
+        currentFlowField.mountainCost = mountainCost;
     }
 
     private void Update()
@@ -21,6 +29,7 @@ public class GridController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             InitFlowField();
+            currentFlowField.CreateCostField();
         }
     }
 }
