@@ -761,5 +761,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Obstacles_Circles_and_Squares
       objectReference: {fileID: 0}
+    - target: {fileID: 6745500144201932710, guid: 54fa8c2d1bd01844396efe911d949cf4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4.9259086
+      objectReference: {fileID: 0}
+    - target: {fileID: 6745500144201932710, guid: 54fa8c2d1bd01844396efe911d949cf4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 19.9456
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54fa8c2d1bd01844396efe911d949cf4, type: 3}
