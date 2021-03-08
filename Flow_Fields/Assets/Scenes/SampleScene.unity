@@ -813,8 +813,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49562550d6f54741b79057624e57cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: {x: 34, y: 17}
-  cellRadius: 0.75
+  gridSize: {x: 25, y: 13}
+  cellRadius: 1
   gridDebug: {fileID: 969503369}
   gravelCost: 3
   mountainCost: 8

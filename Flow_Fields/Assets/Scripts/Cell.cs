@@ -29,4 +29,8 @@ public class Cell
         else
             cost += (byte)increment;
     }
+    public void ResetCost()
+    {
+        cost = 1;
+    }
 }

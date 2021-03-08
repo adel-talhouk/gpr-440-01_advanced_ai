@@ -38,6 +38,14 @@ public class FlowField
         }
     }
 
+    public void ResetCosts()
+    {
+        foreach (Cell currentCell in grid)
+        {
+            currentCell.ResetCost();
+        }
+    }
+
     public void CreateCostField()
     {
         //Get data for overlap box
