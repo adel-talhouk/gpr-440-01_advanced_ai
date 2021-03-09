@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Heavily inspired by: Turbo Makes Games: Tutorial - Flow Field Pathfinding in Unity https://www.youtube.com/watch?v=tSe6ZqDKB0Y
 public class Cell
 {
     //Positions
@@ -31,8 +32,10 @@ public class Cell
         else
             cost += (byte)increment;
     }
-    public void ResetCost()
+
+    public void ResetCosts()
     {
         cost = 1;
+        bestCost = ushort.MaxValue;
     }
 }

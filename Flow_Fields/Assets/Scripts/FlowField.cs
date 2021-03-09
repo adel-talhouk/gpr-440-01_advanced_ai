@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Heavily inspired by: Turbo Makes Games: Tutorial - Flow Field Pathfinding in Unity https://www.youtube.com/watch?v=tSe6ZqDKB0Y
 public class FlowField
 {
     public Cell[,] grid { get; private set; }
@@ -45,7 +46,7 @@ public class FlowField
     {
         foreach (Cell currentCell in grid)
         {
-            currentCell.ResetCost();
+            currentCell.ResetCosts();
         }
     }
 

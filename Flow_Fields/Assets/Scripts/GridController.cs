@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Inspired by: Turbo Makes Games: Tutorial - Flow Field Pathfinding in Unity https://www.youtube.com/watch?v=tSe6ZqDKB0Y
 public class GridController : MonoBehaviour
 {
     public Vector2Int gridSize;
@@ -24,7 +25,7 @@ public class GridController : MonoBehaviour
         currentFlowField.mountainCost = mountainCost;
     }
 
-    private void Update()
+    void Update()
     {
         //KEY DOWN - RETURN     - Init flow field and cost field
         if (Input.GetKeyDown(KeyCode.Return))
@@ -33,23 +34,17 @@ public class GridController : MonoBehaviour
             currentFlowField.CreateCostField();
         }
 
-        //KEY DOWN - R         - Reload cost field
-        if (Input.GetKeyDown(KeyCode.R) && currentFlowField != null)
+        //MOUSE BUTTON DOWN - 0     - Create cost field and integration field
+        if (Input.GetMouseButtonDown(0) && currentFlowField != null)
         {
             //Reset costs
             currentFlowField.ResetCosts();
-
-            //Set costs
             currentFlowField.gravelCost = gravelCost;
             currentFlowField.mountainCost = mountainCost;
 
-            //Create new cost field
+            //Create cost field
             currentFlowField.CreateCostField();
-        }
 
-        //MOUSE BUTTON DOWN - 0     - Create integration field
-        if (Input.GetMouseButtonDown(0) && currentFlowField != null)
-        {
             //Get the mouse click position
             Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f);
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePos);
