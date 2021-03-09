@@ -151,7 +151,7 @@ public class GridDebug : MonoBehaviour
 		{
 			if (curFlowField == null)
 			{
-				DrawGrid(gridController.gridSize, Color.yellow, gridController.cellRadius);
+				DrawGrid(gridController.gridSize, Color.red, gridController.cellRadius);
 			}
 			else
 			{
