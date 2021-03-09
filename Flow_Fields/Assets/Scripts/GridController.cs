@@ -46,5 +46,17 @@ public class GridController : MonoBehaviour
             //Create new cost field
             currentFlowField.CreateCostField();
         }
+
+        //MOUSE BUTTON DOWN - 0     - Create integration field
+        if (Input.GetMouseButtonDown(0) && currentFlowField != null)
+        {
+            //Get the mouse click position
+            Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f);
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePos);
+
+            //Destination cell and integration field creation
+            Cell destinationCell = currentFlowField.GetCellAtWorldPosition(mouseWorldPos);
+            currentFlowField.CreateIntegrationField(destinationCell);
+        }
     }
 }

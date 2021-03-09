@@ -174,14 +174,14 @@ public class GridDebug : MonoBehaviour
                 }
                 break;
             }
-            //	case FlowFieldDisplayType.IntegrationField:
-            //  {
-            //		foreach (Cell curCell in curFlowField.grid)
-            //		{
-            //			Handles.Label(curCell.worldPosition, curCell.bestCost.ToString(), style);
-            //		}
-            //		break;
-            //  }
+            case FlowFieldDisplayType.IntegrationField:
+            {
+                foreach (Cell curCell in curFlowField.grid)
+                {
+                    Handles.Label(curCell.worldPosition, curCell.bestCost.ToString(), style);
+                }
+                break;
+            }
             default:
                 break;
         }
