@@ -14,6 +14,13 @@ public class GridController : MonoBehaviour
     public byte gravelCost = 3;
     public byte mountainCost = 8;
 
+    public bool hasFlowField { get; private set; }
+
+    void Start()
+    {
+        hasFlowField = false;
+    }
+
     void InitFlowField()
     {
         currentFlowField = new FlowField(cellRadius, gridSize);
@@ -56,6 +63,7 @@ public class GridController : MonoBehaviour
             //Flow field
             currentFlowField.CreateFlowField();
             gridDebug.DrawFlowField();
+            hasFlowField = true;
         }
     }
 }
