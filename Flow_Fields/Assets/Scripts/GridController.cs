@@ -34,7 +34,7 @@ public class GridController : MonoBehaviour
             currentFlowField.CreateCostField();
         }
 
-        //MOUSE BUTTON DOWN - 0     - Create cost field and integration field
+        //MOUSE BUTTON DOWN - 0     - Create cost field, integration field, and flow field
         if (Input.GetMouseButtonDown(0) && currentFlowField != null)
         {
             //Reset costs
@@ -52,6 +52,10 @@ public class GridController : MonoBehaviour
             //Destination cell and integration field creation
             Cell destinationCell = currentFlowField.GetCellAtWorldPosition(mouseWorldPos);
             currentFlowField.CreateIntegrationField(destinationCell);
+
+            //Flow field
+            currentFlowField.CreateFlowField();
+            gridDebug.DrawFlowField();
         }
     }
 }

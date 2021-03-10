@@ -13,6 +13,9 @@ public class Cell
     public byte cost;   //Int from 0 to 255, makes it easier to scope out terrain costs
     public ushort bestCost; //Unsigned short int for the best cost
 
+    //Cheapest neighbour
+    public GridDirection bestDirection;
+
     //Constructor
     public Cell(Vector3 worldPos, Vector2Int gridPos)
     {
@@ -20,6 +23,7 @@ public class Cell
         gridPosition = gridPos;
         cost = 1;   //Default value
         bestCost = ushort.MaxValue; //Default value is max, because we want to save whatever is the smallest value (basis for comparison is the largest possible num)
+        bestDirection = GridDirection.None;
     }
 
     public void IncreaseCost(int increment)

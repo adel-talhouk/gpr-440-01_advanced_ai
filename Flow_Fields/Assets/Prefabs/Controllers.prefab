@@ -125,4 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridController: {fileID: 1053083282612384236}
   displayGrid: 1
-  curDisplayType: 3
+  curDisplayType: 1
+  arrowIcon: {fileID: 21300000, guid: edbe3ed88d80a064389c7ededca9b876, type: 3}
+  destinationIcon: {fileID: 21300000, guid: 79d1ead1d21af0148a94d0be121958fa, type: 3}
+  impassableIcon: {fileID: 21300000, guid: d5a686aab50f41a4c8e9f1953707ff6c, type: 3}
