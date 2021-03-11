@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 //Heavily inspired by: Turbo Makes Games: Tutorial - Flow Field Pathfinding in Unity https://www.youtube.com/watch?v=tSe6ZqDKB0Y
 public class UnitManager : MonoBehaviour
@@ -9,14 +10,18 @@ public class UnitManager : MonoBehaviour
     public GameObject unitPrefab;
     [Range(10, 50)] public int numOfUnitsToSpawn = 20;
     [Range(1.0f, 5.0f)] public float unitMoveSpeed = 2.5f;
+    public TextMeshProUGUI numOfUnitsText;
 
     //Units list
     List<GameObject> unitsList;
+
+    int numOfUnits = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         unitsList = new List<GameObject>();
+        numOfUnitsText.text = "Num of Units: " + numOfUnits;
     }
 
     // Update is called once per frame
@@ -58,6 +63,9 @@ public class UnitManager : MonoBehaviour
             GameObject unit = Instantiate(unitPrefab);
             unit.transform.parent = transform;
             unitsList.Add(unit);
+            numOfUnits++;
+            numOfUnitsText.text = "Num of Units: " + numOfUnits;
+
             do
             {
                 newPos = new Vector3(Random.Range(0, maxSpawnPos.x), 1.0f, Random.Range(0, maxSpawnPos.y));
