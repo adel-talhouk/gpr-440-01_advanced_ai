@@ -958,6 +958,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1053083282612384236, guid: 30fcecbc8d4e99248adbeb821cf64e0d, type: 3}
+      propertyPath: foodPrefab
+      value: 
+      objectReference: {fileID: 846788415881453971, guid: f3211a5a18ceb1d4080259812dfcc4b6, type: 3}
+    - target: {fileID: 1053083282612384236, guid: 30fcecbc8d4e99248adbeb821cf64e0d, type: 3}
       propertyPath: gridSize.x
       value: 41
       objectReference: {fileID: 0}
@@ -1015,7 +1019,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1053083284297151424, guid: 30fcecbc8d4e99248adbeb821cf64e0d, type: 3}
       propertyPath: curDisplayType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4216616098968014837, guid: 30fcecbc8d4e99248adbeb821cf64e0d, type: 3}
       propertyPath: unitPrefab

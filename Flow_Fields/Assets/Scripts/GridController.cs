@@ -14,6 +14,10 @@ public class GridController : MonoBehaviour
     public byte gravelCost = 3;
     public byte mountainCost = 8;
 
+    [Header("Food")]
+    public GameObject foodPrefab;
+    public static bool canSpawnFood = true;
+
     public bool hasFlowField { get; private set; }
 
     void Start()
@@ -64,6 +68,14 @@ public class GridController : MonoBehaviour
             currentFlowField.CreateFlowField();
             gridDebug.DrawFlowField();
             hasFlowField = true;
+
+            //Food
+            if (canSpawnFood)
+            {
+                Vector3 spawnPos = destinationCell.worldPosition + new Vector3(0.0f, foodPrefab.transform.localScale.y / 2.0f, 0.0f);
+                Instantiate(foodPrefab, spawnPos, Quaternion.identity);
+                canSpawnFood = false;
+            }
         }
     }
 }
