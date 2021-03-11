@@ -20,9 +20,15 @@ public class GridController : MonoBehaviour
 
     public bool hasFlowField { get; private set; }
 
+    bool hasBeenGivenInstructions = false;  //Just for debug.log instructions
+
     void Start()
     {
         hasFlowField = false;
+
+        //Instructions
+        Debug.Log("Press the Enter key to confirm the grid!");
+        Debug.Log("Press the Space Bar to spawn Units!");
     }
 
     void InitFlowField()
@@ -43,6 +49,14 @@ public class GridController : MonoBehaviour
         {
             InitFlowField();
             currentFlowField.CreateCostField();
+
+            //Instructions
+            if (!hasBeenGivenInstructions)
+            {
+                Debug.Log("Click on any Cell in the Grid to create the Flow Field!");
+                Debug.Log("You can change the visualisation mode in the GridVisualiser GameObject's GridDebug script!");
+                hasBeenGivenInstructions = true;
+            }
         }
 
         //MOUSE BUTTON DOWN - 0     - Create cost field, integration field, and flow field
