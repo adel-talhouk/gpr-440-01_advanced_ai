@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
@@ -22,7 +20,7 @@ public class GridManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void CreateGrid()
@@ -56,5 +54,22 @@ public class GridManager : MonoBehaviour
         int y = Mathf.Clamp(Mathf.FloorToInt((gridSize.y) * percentY), 0, gridSize.y - 1);
 
         return grid[x, y].transform.position;
+    }
+
+    public void ApplyInfluence(Vector2 origin, float range, float maxInfluence)
+    {
+        //Get all the cells in the radius
+        Collider2D[] cells = Physics2D.OverlapCircleAll(origin, range);
+
+        //Apply influence (decreases based on distance from origin)
+        foreach (Collider2D cell in cells)
+        {
+            //Calculate distance away and corresponding influence to add (linearly decreases)
+            Vector2 pos2D = new Vector2(cell.transform.position.x, cell.transform.position.y);
+            float distanceFromOrigin = (pos2D - origin).magnitude;
+            float increaseAmount = maxInfluence - (maxInfluence * (distanceFromOrigin / range));
+
+            cell.GetComponent<Cell>().IncreaseCost(Mathf.Abs(increaseAmount));  //Absolute value in case it goes negative
+        }
     }
 }

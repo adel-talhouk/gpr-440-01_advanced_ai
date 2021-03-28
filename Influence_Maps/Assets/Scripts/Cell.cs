@@ -15,6 +15,9 @@ public class Cell : MonoBehaviour
     public void IncreaseCost(float increaseAmount)
     {
         cost += increaseAmount;
+
+        //Update colour
+        GetComponent<SpriteRenderer>().color = new Color(0f, 1f, 0f, Mathf.Min(1f, cost));
     }
 
     void OnTriggerEnter2D(Collider2D col)

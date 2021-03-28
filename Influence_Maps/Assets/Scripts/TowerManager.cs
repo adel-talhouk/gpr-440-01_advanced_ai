@@ -13,9 +13,13 @@ public class TowerManager : MonoBehaviour
     public int minigunCost = 1500;
     public int startingCash = 5000;
 
-    [Header("Prefabs")]
+    [Header("Cannon")]
     public GameObject cannonTower;
+    [Range(0.5f, 5.0f)] public float cannonRange = 2.5f;
+
+    [Header("Minigun")]
     public GameObject minigunTower;
+    [Range(0.5f, 5.0f)] public float minigunRange = 4f;
 
     [Header("UI")]
     public TextMeshProUGUI currentTowerText;
@@ -95,7 +99,7 @@ public class TowerManager : MonoBehaviour
                     GameObject cannon = Instantiate(cannonTower, pos, Quaternion.identity, transform);
 
                     //Update influence map
-
+                    gridManager.ApplyInfluence(pos, cannonRange, 1f);
 
                     //Pay for it you greedy mf
                     currentCash -= cost;
@@ -108,7 +112,7 @@ public class TowerManager : MonoBehaviour
                     GameObject minigun = Instantiate(minigunTower, pos, Quaternion.identity, transform);
 
                     //Update influence map
-
+                    gridManager.ApplyInfluence(pos, minigunRange, 1f);
 
                     //Pay for it you greedy mf
                     currentCash -= cost;
