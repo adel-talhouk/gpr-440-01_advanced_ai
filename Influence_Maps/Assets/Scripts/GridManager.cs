@@ -10,6 +10,9 @@ public class GridManager : MonoBehaviour
     public Vector2Int gridSize;
     [Range(0.1f, 0.5f)] public float cellSpacing = 0.1f;
 
+    //Grid
+    Cell[,] grid;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,8 @@ public class GridManager : MonoBehaviour
 
     void CreateGrid()
     {
+        grid = new Cell[gridSize.x, gridSize.y];
+
         //For through the 2D array
         for (int i = 0; i < gridSize.x; i++)
         {
@@ -31,9 +36,25 @@ public class GridManager : MonoBehaviour
             {
                 //Spawn cell at (i, j) with offset
                 Vector2 spawnPos = new Vector2(i + cellSpacing, j + cellSpacing);
-                GameObject cell = Instantiate(cellPrefab, spawnPos, Quaternion.identity, transform);
-                cell.GetComponent<Cell>().cost = 0;
+                GameObject newCell = Instantiate(cellPrefab, spawnPos, Quaternion.identity, transform);
+                newCell.GetComponent<Cell>().cost = 0;
+                grid[i, j] = newCell.GetComponent<Cell>();
             }
         }
+    }
+
+    public Vector2 GetCellWorldPos(Vector2 clickPosition)
+    {
+        float percentX = clickPosition.x / (gridSize.x);
+        float percentY = clickPosition.y / (gridSize.y);
+
+        //Clamp values from 0 to 1
+        percentX = Mathf.Clamp01(percentX);
+        percentY = Mathf.Clamp01(percentY);
+
+        int x = Mathf.Clamp(Mathf.FloorToInt((gridSize.x) * percentX), 0, gridSize.x - 1);
+        int y = Mathf.Clamp(Mathf.FloorToInt((gridSize.y) * percentY), 0, gridSize.y - 1);
+
+        return grid[x, y].transform.position;
     }
 }

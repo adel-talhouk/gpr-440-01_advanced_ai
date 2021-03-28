@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 581119340718686143, guid: 1cc11d5c66e4b634092eafe3247d35ca, type: 3}
-  gridSize: {x: 18, y: 10}
+  gridSize: {x: 18, y: 9}
   cellSpacing: 0.5
 --- !u!1 &70580866
 GameObject:
@@ -395,8 +395,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 129, y: -58}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 219.34595, y: -36}
+  m_SizeDelta: {x: 380.6919, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &811977084
 MonoBehaviour:
@@ -428,7 +428,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.09618818, g: 0.735849, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -662,8 +662,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -33.335907}
-  m_SizeDelta: {x: 498, y: 116.6718}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 589.9222, y: 211.0784}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &941353057
 MonoBehaviour:
@@ -719,8 +719,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -812,6 +812,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb9665dd15f5eb343b041ffce7ba39c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cannonCost: 500
+  minigunCost: 1500
+  startingCash: 5000
+  cannonTower: {fileID: 4931988228248710285, guid: d68407ea924433c42befd5ce1473bfec, type: 3}
+  minigunTower: {fileID: 6689503578286173792, guid: 61d1f09bd53e3fc498187dd5f7a55af4, type: 3}
+  currentTowerText: {fileID: 811977084}
+  cashAmountText: {fileID: 1312916706}
 --- !u!1 &1312916704
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,7 +853,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -129, y: -58}
+  m_AnchoredPosition: {x: -129, y: -36}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1312916706
@@ -879,7 +886,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.09618818, g: 0.735849, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -903,7 +910,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
