@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1137557554973858230}
   - component: {fileID: 1137557554973858229}
+  - component: {fileID: 8582056987863595646}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -82,3 +83,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8582056987863595646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137557554973858228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3ebeff56f4739a4d9f780f67dcfb893, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
