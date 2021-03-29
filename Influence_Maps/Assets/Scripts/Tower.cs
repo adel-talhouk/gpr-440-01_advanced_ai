@@ -23,6 +23,7 @@ public class Tower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Convert the position to 2D
         towerPos = new Vector2(transform.position.x, transform.position.y);
     }
 
@@ -35,10 +36,11 @@ public class Tower : MonoBehaviour
         else
             zombieInCell = false;
 
+        //Fire on a cooldown
         if (zombieInCell && canFire)
             StartCoroutine(AttackCell(mostInfectedCell));
 
-        //Iterate through the cells
+        //Find a new cell with the highest zombie count
         foreach (Cell cell in cellsInRange)
         {
             //If a cell has a zombie in it
