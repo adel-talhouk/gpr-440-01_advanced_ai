@@ -18,6 +18,7 @@ public class TowerManager : MonoBehaviour
     public GameObject cannonProjectile;
     public float cannonProjectileMoveSpeed = 5f;
     [Range(0.5f, 5.0f)] public float cannonRange = 2.5f;
+    public float cannonProjectileLifeSpan = 1.5f;
     public float cannonDamagePerProjectile = 5f;
     public float cannonFireRatePerSec = 2f;
 
@@ -26,6 +27,7 @@ public class TowerManager : MonoBehaviour
     public GameObject minigunProjectile;
     public float minigunProjectileMoveSpeed = 7.5f;
     [Range(0.5f, 5.0f)] public float minigunRange = 4f;
+    public float minigunProjectileLifeSpan = 1.5f;
     public float minigunDamagePerProjectile = 2f;
     public float minigunFireRatePerSec = 5f;
 
@@ -112,6 +114,7 @@ public class TowerManager : MonoBehaviour
                     //Set data
                     cannon.GetComponent<Tower>().projectilePrefab = cannonProjectile;
                     cannon.GetComponent<Tower>().projectileMoveSpeed = cannonProjectileMoveSpeed;
+                    cannon.GetComponent<Tower>().projectileLifeSpan = cannonProjectileLifeSpan;
                     cannon.GetComponent<Tower>().damagePerProjectile = cannonDamagePerProjectile;
                     cannon.GetComponent<Tower>().fireRatePerSec = cannonFireRatePerSec;
 
@@ -134,6 +137,7 @@ public class TowerManager : MonoBehaviour
                     //Set data
                     minigun.GetComponent<Tower>().projectilePrefab = minigunProjectile;
                     minigun.GetComponent<Tower>().projectileMoveSpeed = minigunProjectileMoveSpeed;
+                    minigun.GetComponent<Tower>().projectileLifeSpan = minigunProjectileLifeSpan;
                     minigun.GetComponent<Tower>().damagePerProjectile = minigunDamagePerProjectile;
                     minigun.GetComponent<Tower>().fireRatePerSec = minigunFireRatePerSec;
 

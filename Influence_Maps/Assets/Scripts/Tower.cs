@@ -7,6 +7,7 @@ public class Tower : MonoBehaviour
     [HideInInspector] public GameObject projectilePrefab;
     [HideInInspector] public float projectileMoveSpeed = 5f;
 
+    [HideInInspector] public float projectileLifeSpan = 1.5f;
     [HideInInspector] public float damagePerProjectile = 5f;
     [HideInInspector] public float fireRatePerSec = 2f;
 
@@ -66,6 +67,7 @@ public class Tower : MonoBehaviour
 
         //Spawn a projectile
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.LookRotation(fireDirection));
+        projectile.GetComponent<Projectile>().lifeSpanSeconds = projectileLifeSpan;
         projectile.GetComponent<Projectile>().damageValue = damagePerProjectile;
         projectile.GetComponent<Projectile>().moveSpeed = projectileMoveSpeed;
 

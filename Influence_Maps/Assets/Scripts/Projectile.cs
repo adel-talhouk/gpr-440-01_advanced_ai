@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float lifeSpanSeconds = 1.5f;
-    public float damageValue = 5f;
-    public float moveSpeed = 5f;
+    [HideInInspector] public float lifeSpanSeconds = 1.5f;
+    [HideInInspector] public float damageValue = 5f;
+    [HideInInspector] public float moveSpeed = 5f;
 
     //Private data
     Rigidbody2D rb;
