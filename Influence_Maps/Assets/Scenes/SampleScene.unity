@@ -822,16 +822,16 @@ MonoBehaviour:
   startingCash: 5000
   cannonTower: {fileID: 4931988228248710285, guid: d68407ea924433c42befd5ce1473bfec, type: 3}
   cannonProjectile: {fileID: 2372236584425457564, guid: da8326ddbbd09c54f996705879113d37, type: 3}
-  cannonProjectileMoveSpeed: 5
+  cannonProjectileMoveSpeed: 7.5
   cannonRange: 2.5
-  cannonProjectileLifeSpan: 0.75
+  cannonProjectileLifeSpan: 2
   cannonDamagePerProjectile: 5
   cannonFireRatePerSec: 2
   minigunTower: {fileID: 6689503578286173792, guid: 61d1f09bd53e3fc498187dd5f7a55af4, type: 3}
   minigunProjectile: {fileID: 2372236584425457564, guid: da8326ddbbd09c54f996705879113d37, type: 3}
-  minigunProjectileMoveSpeed: 7.5
+  minigunProjectileMoveSpeed: 15
   minigunRange: 4
-  minigunProjectileLifeSpan: 1.5
+  minigunProjectileLifeSpan: 2.25
   minigunDamagePerProjectile: 2
   minigunFireRatePerSec: 5
   currentTowerText: {fileID: 811977084}

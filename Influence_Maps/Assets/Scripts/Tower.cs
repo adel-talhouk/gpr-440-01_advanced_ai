@@ -44,8 +44,13 @@ public class Tower : MonoBehaviour
         }
 
         //Fire at the most infected cell if you can
+        if (mostInfectedCell.ZombiesInCell > 0)
+            canFire = true;
+        else
+            canFire = false;
+
         if (canFire)
-            AttackCell(mostInfectedCell);
+            StartCoroutine(AttackCell(mostInfectedCell));
     }
 
     public void SetCellsInRange(Collider2D[] colliders)
@@ -65,13 +70,14 @@ public class Tower : MonoBehaviour
     {
         Vector2 cellPos = new Vector2(target.transform.position.x, target.transform.position.y);
         Vector2 fireDirection = cellPos - towerPos;
+        float rotationAngle = Mathf.Atan2(fireDirection.y, fireDirection.x) * Mathf.Rad2Deg - 90f;
 
         //Spawn a projectile
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.LookRotation(fireDirection));
+        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.Euler(0f, 0f, rotationAngle));
         projectile.GetComponent<Projectile>().lifeSpanSeconds = projectileLifeSpan;
         projectile.GetComponent<Projectile>().damageValue = damagePerProjectile;
         projectile.GetComponent<Projectile>().moveSpeed = projectileMoveSpeed;
-
+        
         //Cannot fire
         canFire = false;
 
