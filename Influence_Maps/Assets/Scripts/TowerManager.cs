@@ -15,11 +15,19 @@ public class TowerManager : MonoBehaviour
 
     [Header("Cannon")]
     public GameObject cannonTower;
+    public GameObject cannonProjectile;
+    public float cannonProjectileMoveSpeed = 5f;
     [Range(0.5f, 5.0f)] public float cannonRange = 2.5f;
+    public float cannonDamagePerProjectile = 5f;
+    public float cannonFireRatePerSec = 2f;
 
     [Header("Minigun")]
     public GameObject minigunTower;
+    public GameObject minigunProjectile;
+    public float minigunProjectileMoveSpeed = 7.5f;
     [Range(0.5f, 5.0f)] public float minigunRange = 4f;
+    public float minigunDamagePerProjectile = 2f;
+    public float minigunFireRatePerSec = 5f;
 
     [Header("UI")]
     public TextMeshProUGUI currentTowerText;
@@ -101,6 +109,15 @@ public class TowerManager : MonoBehaviour
                     //Update influence map
                     gridManager.ApplyInfluence(pos, cannonRange, 1f);
 
+                    //Set data
+                    cannon.GetComponent<Tower>().projectilePrefab = cannonProjectile;
+                    cannon.GetComponent<Tower>().projectileMoveSpeed = cannonProjectileMoveSpeed;
+                    cannon.GetComponent<Tower>().damagePerProjectile = cannonDamagePerProjectile;
+                    cannon.GetComponent<Tower>().fireRatePerSec = cannonFireRatePerSec;
+
+                    //Set the cells the tower has influence over
+                    cannon.GetComponent<Tower>().SetCellsInRange (Physics2D.OverlapCircleAll(pos, cannonRange));
+
                     //Pay for it you greedy mf
                     currentCash -= cost;
                     cashAmountText.text = "$" + currentCash;
@@ -113,6 +130,15 @@ public class TowerManager : MonoBehaviour
 
                     //Update influence map
                     gridManager.ApplyInfluence(pos, minigunRange, 1f);
+
+                    //Set data
+                    minigun.GetComponent<Tower>().projectilePrefab = minigunProjectile;
+                    minigun.GetComponent<Tower>().projectileMoveSpeed = minigunProjectileMoveSpeed;
+                    minigun.GetComponent<Tower>().damagePerProjectile = minigunDamagePerProjectile;
+                    minigun.GetComponent<Tower>().fireRatePerSec = minigunFireRatePerSec;
+
+                    //Set the cells the tower has influence over
+                    minigun.GetComponent<Tower>().SetCellsInRange(Physics2D.OverlapCircleAll(pos, minigunRange));
 
                     //Pay for it you greedy mf
                     currentCash -= cost;

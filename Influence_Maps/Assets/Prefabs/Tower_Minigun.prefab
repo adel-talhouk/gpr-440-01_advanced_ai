@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5447174030226311762}
   - component: {fileID: 2924950972325699181}
+  - component: {fileID: 5259829390392227749}
   m_Layer: 0
-  m_Name: Minigun_Tower
+  m_Name: Tower_Minigun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,3 +83,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5259829390392227749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6689503578286173792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e31987e80acd44ba352360ec3a452e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

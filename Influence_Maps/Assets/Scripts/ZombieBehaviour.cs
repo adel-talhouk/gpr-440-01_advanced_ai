@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ZombieBehaviour : MonoBehaviour
 {
+    public float moveSpeed = 5f;
+    public Vector2 seekDestination;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +17,10 @@ public class ZombieBehaviour : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void DealDamage(float damage)
+    {
+
     }
 }
