@@ -7,6 +7,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject zombiePrefab;
     [Range(1.5f, 5f)] public float zombieMinSpeed = 1.5f;
     [Range(1.5f, 5f)] public float zombieMaxSpeed = 5f;
+    [Range(15f, 50f)] public float zombieMaxHealth = 20f;
     public Vector2 zombieSeekLocation;
 
     // Start is called before the first frame update

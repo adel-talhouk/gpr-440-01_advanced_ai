@@ -50,6 +50,7 @@ public class Tower : MonoBehaviour
 
     public void SetCellsInRange(Collider2D[] colliders)
     {
+        cellsInRange = new List<Cell>();    //Default so it is not null
         cellsInRange.Clear();
 
         foreach(Collider2D col in colliders)

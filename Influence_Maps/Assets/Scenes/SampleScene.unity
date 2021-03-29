@@ -278,9 +278,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c36299dad6153744487c53454f10de35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombiePrefab: {fileID: 0}
+  zombiePrefab: {fileID: 1137557554973858228, guid: 23b35cf4e624a424cbbf15d1f3304cbb, type: 3}
   zombieMinSpeed: 1.5
   zombieMaxSpeed: 5
+  zombieMaxHealth: 20
   zombieSeekLocation: {x: 0, y: 0}
 --- !u!1 &519420028
 GameObject:

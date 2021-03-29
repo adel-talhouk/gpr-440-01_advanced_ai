@@ -119,7 +119,7 @@ public class TowerManager : MonoBehaviour
                     cannon.GetComponent<Tower>().fireRatePerSec = cannonFireRatePerSec;
 
                     //Set the cells the tower has influence over
-                    cannon.GetComponent<Tower>().SetCellsInRange (Physics2D.OverlapCircleAll(pos, cannonRange));
+                    cannon.GetComponent<Tower>().SetCellsInRange(Physics2D.OverlapCircleAll(pos, cannonRange));
 
                     //Pay for it you greedy mf
                     currentCash -= cost;

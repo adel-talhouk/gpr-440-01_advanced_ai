@@ -23,7 +23,9 @@ public class Cell : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Zombie"))
+        {
             zombiesInCell++;
+        }
     }
 
     void OnTriggerExit2D(Collider2D col)
