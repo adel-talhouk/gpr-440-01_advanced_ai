@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.AddForce(transform.up * moveSpeed);
+        rb.velocity = transform.up * moveSpeed;
     }
 
     void OnTriggerEnter2D(Collider2D col)

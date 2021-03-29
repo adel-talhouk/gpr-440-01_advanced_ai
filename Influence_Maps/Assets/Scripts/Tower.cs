@@ -17,7 +17,8 @@ public class Tower : MonoBehaviour
 
     //Helper data
     Vector2 towerPos;
-    bool canFire = false;
+    bool canFire = true;
+    bool zombieInCell = false;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,15 @@ public class Tower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Check if there is a zombie in a cell
+        if (mostInfectedCell.ZombiesInCell > 0)
+            zombieInCell = true;
+        else
+            zombieInCell = false;
+
+        if (zombieInCell && canFire)
+            StartCoroutine(AttackCell(mostInfectedCell));
+
         //Iterate through the cells
         foreach (Cell cell in cellsInRange)
         {
@@ -42,15 +52,6 @@ public class Tower : MonoBehaviour
                 }
             }
         }
-
-        //Fire at the most infected cell if you can
-        if (mostInfectedCell.ZombiesInCell > 0)
-            canFire = true;
-        else
-            canFire = false;
-
-        if (canFire)
-            StartCoroutine(AttackCell(mostInfectedCell));
     }
 
     public void SetCellsInRange(Collider2D[] colliders)
@@ -77,7 +78,7 @@ public class Tower : MonoBehaviour
         projectile.GetComponent<Projectile>().lifeSpanSeconds = projectileLifeSpan;
         projectile.GetComponent<Projectile>().damageValue = damagePerProjectile;
         projectile.GetComponent<Projectile>().moveSpeed = projectileMoveSpeed;
-        
+
         //Cannot fire
         canFire = false;
 

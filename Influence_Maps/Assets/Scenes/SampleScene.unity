@@ -826,7 +826,7 @@ MonoBehaviour:
   cannonRange: 2.5
   cannonProjectileLifeSpan: 2
   cannonDamagePerProjectile: 5
-  cannonFireRatePerSec: 2
+  cannonFireRatePerSec: 0.5
   minigunTower: {fileID: 6689503578286173792, guid: 61d1f09bd53e3fc498187dd5f7a55af4, type: 3}
   minigunProjectile: {fileID: 2372236584425457564, guid: da8326ddbbd09c54f996705879113d37, type: 3}
   minigunProjectileMoveSpeed: 15
