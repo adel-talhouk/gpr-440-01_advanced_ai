@@ -36,6 +36,8 @@ public class EnemyManager : MonoBehaviour
         currentWave = 0;
         currentWaveText.text = "Current Wave: " + currentWave;
 
+        numOfZombiesPrevWave = (int)(zombiesPerWave / waveSpawnMultiplier);
+
         towerManager = FindObjectOfType<TowerManager>();
 
         StartCoroutine(StartNextWave());
