@@ -7,6 +7,7 @@ public class ZombieBehaviour : MonoBehaviour
     public float moveSpeed = 5f;
     public Vector2 seekDestination;
     public float maxHealth = 20f;
+    public EnemyManager enemyManager;
 
     //Private data
     float currentHealth;
@@ -29,6 +30,7 @@ public class ZombieBehaviour : MonoBehaviour
 
         if (currentHealth <= 0f)
         {
+            enemyManager.MarkZombieDead();
             Destroy(gameObject);
         }
     }

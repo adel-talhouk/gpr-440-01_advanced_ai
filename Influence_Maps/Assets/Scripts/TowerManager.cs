@@ -36,7 +36,7 @@ public class TowerManager : MonoBehaviour
     public TextMeshProUGUI cashAmountText;
 
     //Private data
-    int currentCash;
+    [HideInInspector] public int currentCash;
     GridManager gridManager;
 
     // Start is called before the first frame update
