@@ -36,6 +36,7 @@ public class GridManager : MonoBehaviour
                 Vector2 spawnPos = new Vector2(i + cellSpacing, j + cellSpacing);
                 GameObject newCell = Instantiate(cellPrefab, spawnPos, Quaternion.identity, transform);
                 newCell.GetComponent<Cell>().cost = 0;
+                newCell.GetComponent<Cell>().gridManager = this;
                 grid[i, j] = newCell.GetComponent<Cell>();
             }
         }
@@ -54,6 +55,21 @@ public class GridManager : MonoBehaviour
         int y = Mathf.Clamp(Mathf.FloorToInt((gridSize.y) * percentY), 0, gridSize.y - 1);
 
         return grid[x, y].transform.position;
+    }
+
+    public Cell GetCellAt(Vector2 clickPosition)
+    {
+        float percentX = clickPosition.x / (gridSize.x);
+        float percentY = clickPosition.y / (gridSize.y);
+
+        //Clamp values from 0 to 1
+        percentX = Mathf.Clamp01(percentX);
+        percentY = Mathf.Clamp01(percentY);
+
+        int x = Mathf.Clamp(Mathf.FloorToInt((gridSize.x) * percentX), 0, gridSize.x - 1);
+        int y = Mathf.Clamp(Mathf.FloorToInt((gridSize.y) * percentY), 0, gridSize.y - 1);
+
+        return grid[x, y];
     }
 
     public void ApplyInfluence(Vector2 origin, float range, float maxInfluence)

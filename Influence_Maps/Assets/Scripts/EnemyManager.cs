@@ -29,6 +29,7 @@ public class EnemyManager : MonoBehaviour
     int numOfZombiesToSpawn;
     int numOfZombiesPrevWave;
     TowerManager towerManager;
+    GridManager gridManager;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,7 @@ public class EnemyManager : MonoBehaviour
         numOfZombiesPrevWave = (int)(zombiesPerWave / waveSpawnMultiplier);
 
         towerManager = FindObjectOfType<TowerManager>();
+        gridManager = FindObjectOfType<GridManager>();
 
         StartCoroutine(StartNextWave());
     }
@@ -66,6 +68,9 @@ public class EnemyManager : MonoBehaviour
             zombie.GetComponent<ZombieBehaviour>().seekDestination = zombieSeekLocation;
             zombie.GetComponent<ZombieBehaviour>().maxHealth = zombieMaxHealth;
             zombie.GetComponent<ZombieBehaviour>().enemyManager = this;
+
+            //Find path
+            zombie.GetComponent<ZombieBehaviour>().FindPathAStar(gridManager.GetCellAt(spawnPos), gridManager.GetCellAt(zombieSeekLocation));
 
             numOfZombiesAlive++;
         }
