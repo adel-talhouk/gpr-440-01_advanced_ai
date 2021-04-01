@@ -42,13 +42,18 @@ public class EnemyManager : MonoBehaviour
         towerManager = FindObjectOfType<TowerManager>();
         gridManager = FindObjectOfType<GridManager>();
 
-        StartCoroutine(StartNextWave());
+        //StartCoroutine(StartNextWave());
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        //If there are towers in the game and no zombies
+        if (towerManager.hasSpawnedTowers && numOfZombiesAlive <= 0)
+        {
+            //Start the next wave
+            StartCoroutine(StartNextWave());
+        }
     }
 
     void SpawnZombies()

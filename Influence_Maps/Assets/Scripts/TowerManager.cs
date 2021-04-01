@@ -37,6 +37,7 @@ public class TowerManager : MonoBehaviour
 
     //Private data
     [HideInInspector] public int currentCash;
+    [HideInInspector] public bool hasSpawnedTowers = false;
     GridManager gridManager;
 
     // Start is called before the first frame update
@@ -107,6 +108,7 @@ public class TowerManager : MonoBehaviour
                 {
                     //Place it here
                     GameObject cannon = Instantiate(cannonTower, pos, Quaternion.identity, transform);
+                    hasSpawnedTowers = true;
 
                     //Update influence map
                     gridManager.ApplyInfluence(pos, cannonRange, 1f);
@@ -130,6 +132,7 @@ public class TowerManager : MonoBehaviour
                 {
                     //Place it here
                     GameObject minigun = Instantiate(minigunTower, pos, Quaternion.identity, transform);
+                    hasSpawnedTowers = true;
 
                     //Update influence map
                     gridManager.ApplyInfluence(pos, minigunRange, 1f);
