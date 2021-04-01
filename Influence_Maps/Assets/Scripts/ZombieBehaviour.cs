@@ -45,7 +45,8 @@ public class ZombieBehaviour : MonoBehaviour
     {
         //Open and closed lists
         List<Cell> openList = new List<Cell>();
-        List<Cell> closedList = new List<Cell>();
+        //List<Cell> closedList = new List<Cell>();
+        bestPath = new List<Cell>();
         Dictionary<Cell, Cell> cameFrom = new Dictionary<Cell, Cell>();
         Dictionary<Cell, float> costSoFar = new Dictionary<Cell, float>();
 
@@ -53,6 +54,7 @@ public class ZombieBehaviour : MonoBehaviour
         openList.Add(startingNode);
         Cell currentNode = startingNode;
         cameFrom[currentNode] = null;
+        costSoFar[currentNode] = 0;
 
         while (openList.Count > 0)
         {
@@ -77,6 +79,7 @@ public class ZombieBehaviour : MonoBehaviour
 
                     //Set this node as the cheapest
                     cheapestNode = node;
+                    costSoFar[node] = estimatedCost;
                 }
             }
 

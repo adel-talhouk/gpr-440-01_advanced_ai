@@ -28,6 +28,7 @@ public class EnemyManager : MonoBehaviour
     int numOfZombiesAlive;
     int numOfZombiesToSpawn;
     int numOfZombiesPrevWave;
+    bool shouldStartWave;
     TowerManager towerManager;
     GridManager gridManager;
 
@@ -38,6 +39,8 @@ public class EnemyManager : MonoBehaviour
         currentWaveText.text = "Current Wave: " + currentWave;
 
         numOfZombiesPrevWave = (int)(zombiesPerWave / waveSpawnMultiplier);
+
+        shouldStartWave = false;
 
         towerManager = FindObjectOfType<TowerManager>();
         gridManager = FindObjectOfType<GridManager>();
@@ -51,6 +54,13 @@ public class EnemyManager : MonoBehaviour
         //If there are towers in the game and no zombies
         if (towerManager.hasSpawnedTowers && numOfZombiesAlive <= 0)
         {
+            shouldStartWave = true;
+        }
+
+        if (shouldStartWave)
+        {
+            shouldStartWave = false;
+
             //Start the next wave
             StartCoroutine(StartNextWave());
         }
@@ -67,6 +77,7 @@ public class EnemyManager : MonoBehaviour
 
             //Spawn zombie
             GameObject zombie = Instantiate(zombiePrefab, spawnPos, Quaternion.identity, transform);
+            numOfZombiesAlive++;
 
             //Set data
             zombie.GetComponent<ZombieBehaviour>().moveSpeed = moveSpeed;
@@ -74,10 +85,11 @@ public class EnemyManager : MonoBehaviour
             zombie.GetComponent<ZombieBehaviour>().maxHealth = zombieMaxHealth;
             zombie.GetComponent<ZombieBehaviour>().enemyManager = this;
 
+            //Colour destination cell
+            gridManager.GetCellAt(zombieSeekLocation).GetComponent<SpriteRenderer>().color = Color.yellow;
+
             //Find path
             zombie.GetComponent<ZombieBehaviour>().FindPathAStar(gridManager.GetCellAt(spawnPos), gridManager.GetCellAt(zombieSeekLocation));
-
-            numOfZombiesAlive++;
         }
 
         numOfZombiesPrevWave = numOfZombiesAlive;
@@ -98,7 +110,9 @@ public class EnemyManager : MonoBehaviour
 
     IEnumerator StartNextWave()
     {
-        towerManager.currentCash += profitPerWave;
+        //Bonus cash after the first round
+        if (currentWave > 1)
+            towerManager.currentCash += profitPerWave;
 
         //Wait
         yield return new WaitForSeconds(timeToStartWave);

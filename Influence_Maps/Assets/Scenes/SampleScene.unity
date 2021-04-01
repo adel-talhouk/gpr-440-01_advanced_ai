@@ -416,9 +416,9 @@ MonoBehaviour:
   zombieMinSpeed: 1.5
   zombieMaxSpeed: 5
   zombieMaxHealth: 20
-  zombieSeekLocation: {x: -0.1, y: -0.1}
-  spawnBoundsX: {x: 19.2, y: 19.2}
-  spawnBoundsY: {x: -0.1, y: 9.79}
+  zombieSeekLocation: {x: 2.06, y: 1.34}
+  spawnBoundsX: {x: 16.5, y: 16.5}
+  spawnBoundsY: {x: 1.05, y: 8.59}
   zombiesPerWave: 20
   waveSpawnMultiplier: 1.25
   timeToStartWave: 2
@@ -437,7 +437,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnBoundsBottom
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -449,7 +449,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385534569}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.2, y: -0.1, z: 0}
+  m_LocalPosition: {x: 16.55, y: 1.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -958,7 +958,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnBoundsTop
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -970,7 +970,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 986339440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.2, y: 9.79, z: 0}
+  m_LocalPosition: {x: 16.55, y: 8.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1039,6 +1039,7 @@ MonoBehaviour:
   currentTowerText: {fileID: 811977084}
   cashAmountText: {fileID: 1312916706}
   currentCash: 0
+  hasSpawnedTowers: 0
 --- !u!1 &1312916704
 GameObject:
   m_ObjectHideFlags: 0
@@ -1185,7 +1186,7 @@ GameObject:
   m_Layer: 0
   m_Name: SeekLocation
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1197,7 +1198,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371136599}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: -0.1, z: 0}
+  m_LocalPosition: {x: 2.06, y: 1.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
