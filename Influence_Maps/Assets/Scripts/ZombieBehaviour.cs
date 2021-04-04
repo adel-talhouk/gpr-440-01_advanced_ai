@@ -52,12 +52,36 @@ public class ZombieBehaviour : MonoBehaviour
 
         //Starting node on the open list
         openList.Add(startingNode);
-        Cell currentNode = startingNode;
+        Cell currentNode = null;
         cameFrom[currentNode] = null;
         costSoFar[currentNode] = 0;
 
         while (openList.Count > 0)
         {
+            //Starting node (front of openList)
+            currentNode = openList[0];
+            openList.RemoveAt(0);
+
+            //If we found the end node
+            if (currentNode == destinationNode)
+            {
+                //Temp node
+                Cell tempNode = currentNode;
+
+                //"Trace" the path
+                while (tempNode != startingNode)
+                {
+                    //Add it to the path
+                    bestPath.Add(tempNode);
+
+                    //Get where the temp node came from
+                    tempNode = cameFrom[tempNode];
+                }
+
+                //Early exit
+                return;
+            }
+
             float cheapestCost = float.MaxValue;
             Cell cheapestNode = null;
 
@@ -83,26 +107,13 @@ public class ZombieBehaviour : MonoBehaviour
                 }
             }
 
-            //After we find the cheapest node on the open list, add it to the open list and the path
-            openList.Add(cheapestNode);
-            bestPath.Add(cheapestNode);
-
-            //Pop the cheapest node off the open list
-            currentNode = openList[0];
-            openList.RemoveAt(0);
+            //Set the currentNode to the cheapest one we found
+            currentNode = cheapestNode;
 
             //Get the neighbours and add them to the cameFrom dictionary
             List<Cell> neighbouringNodes = currentNode.GetNeighbouringCells();
             foreach (Cell neighbour in neighbouringNodes)
             {
-                cameFrom[neighbour] = currentNode;
-
-                //If we found the destination node, early exit
-                if (neighbour == destinationNode)
-                {
-                    return;
-                }
-
                 //Calculate cost - Manhattan distance + node cost + cost so far
                 float heuristicCost = Mathf.Abs(neighbour.transform.position.x - destinationNode.transform.position.x)
                     + Mathf.Abs(neighbour.transform.position.y - destinationNode.transform.position.y);
@@ -117,11 +128,11 @@ public class ZombieBehaviour : MonoBehaviour
                     //Add the node to the open list
                     openList.Add(neighbour);
 
+                    //Add the neighbour to the openList
+                    openList.Add(neighbour);
+
                     //Set where it came from
                     cameFrom[neighbour] = currentNode;
-
-                    //Add the neighbour to the path
-                    bestPath.Add(neighbour);
                 }
             }
         }
