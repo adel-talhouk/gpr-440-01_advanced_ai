@@ -175,7 +175,7 @@ public class ZombieBehaviour : MonoBehaviour
 
         //Move towards it
         //transform.position = Vector3.MoveTowards(position2D, nodePos, moveSpeed);
-        rb.velocity = (nodePos - position2D) * moveSpeed;
+        rb.velocity = (nodePos - position2D) * moveSpeed * Time.deltaTime;
 
         //If close enough, continue
         if (Vector2.Distance(position2D, nodePos) <= 0.1f)

@@ -36,7 +36,7 @@ public class TowerManager : MonoBehaviour
     public TextMeshProUGUI cashAmountText;
 
     //Private data
-    [HideInInspector] public int currentCash;
+    int currentCash;
     [HideInInspector] public bool hasSpawnedTowers = false;
     GridManager gridManager;
 
@@ -157,6 +157,12 @@ public class TowerManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void IncreaseCash(int amount)
+    {
+        currentCash += amount;
+        cashAmountText.text = "$" + currentCash;
     }
 
     void SellTower(Vector2 pos)

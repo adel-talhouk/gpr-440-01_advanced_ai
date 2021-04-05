@@ -32,7 +32,7 @@ public class EnemyManager : MonoBehaviour
     TowerManager towerManager;
     GridManager gridManager;
 
-    //bool eatShitZombieScum = false;
+    bool eatShitZombieScum = false;
 
     // Start is called before the first frame update
     void Start()
@@ -46,8 +46,6 @@ public class EnemyManager : MonoBehaviour
 
         towerManager = FindObjectOfType<TowerManager>();
         gridManager = FindObjectOfType<GridManager>();
-
-        StartCoroutine(StartNextWave());
     }
 
     // Update is called once per frame
@@ -64,14 +62,14 @@ public class EnemyManager : MonoBehaviour
             shouldStartWave = false;
 
             //Start the next wave
-            StartCoroutine(StartNextWave());
+            //StartCoroutine(StartNextWave());
 
-            //if (!eatShitZombieScum)
-            //{
-            //    eatShitZombieScum = true;
-            //    numOfZombiesToSpawn = 1;
-            //    SpawnZombies();
-            //}
+            if (!eatShitZombieScum)
+            {
+                eatShitZombieScum = true;
+                numOfZombiesToSpawn = 5;
+                SpawnZombies();
+            }
         }
     }
 
@@ -107,7 +105,7 @@ public class EnemyManager : MonoBehaviour
     public void MarkZombieDead()
     {
         numOfZombiesAlive--;
-        towerManager.currentCash += profitPerKill;
+        towerManager.IncreaseCash(profitPerKill);
 
         //Check if there are no zombies left
         if (numOfZombiesAlive <= 0)
@@ -121,7 +119,7 @@ public class EnemyManager : MonoBehaviour
     {
         //Bonus cash after the first round
         if (currentWave > 1)
-            towerManager.currentCash += profitPerWave;
+            towerManager.IncreaseCash(profitPerWave);
 
         //Wait
         yield return new WaitForSeconds(timeToStartWave);
