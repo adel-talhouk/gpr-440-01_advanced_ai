@@ -62,7 +62,17 @@ public class EnemyManager : MonoBehaviour
             shouldStartWave = false;
 
             //Start the next wave
-            StartCoroutine(StartNextWave());
+            //StartCoroutine(StartNextWave());
+
+            //Bonus cash after the first round
+            if (currentWave > 1)
+                towerManager.IncreaseCash(profitPerWave);
+
+            //Start next wave
+            currentWave++;
+            currentWaveText.text = "Current Wave: " + currentWave;
+            numOfZombiesToSpawn = (int)(numOfZombiesPrevWave * waveSpawnMultiplier);
+            SpawnZombies();
 
             //if (!eatShitZombieScum)
             //{
@@ -106,29 +116,22 @@ public class EnemyManager : MonoBehaviour
     {
         numOfZombiesAlive--;
         towerManager.IncreaseCash(profitPerKill);
-
-        //Check if there are no zombies left
-        if (numOfZombiesAlive <= 0)
-        {
-            //Start next wave
-            StartCoroutine(StartNextWave());
-        }
     }
 
-    IEnumerator StartNextWave()
-    {
-        //Bonus cash after the first round
-        if (currentWave > 1)
-            towerManager.IncreaseCash(profitPerWave);
+    //IEnumerator StartNextWave()
+    //{
+    //    //Bonus cash after the first round
+    //    if (currentWave > 1)
+    //        towerManager.IncreaseCash(profitPerWave);
 
-        //Wait
-        yield return new WaitForSeconds(timeToStartWave);
+    //    //Wait
+    //    yield return new WaitForSeconds(timeToStartWave);
 
-        //Start next wave
-        currentWave++;
-        currentWaveText.text = "Current Wave: " + currentWave;
-        numOfZombiesToSpawn = (int)(numOfZombiesPrevWave * waveSpawnMultiplier);
-        SpawnZombies();
-    }
+    //    //Start next wave
+    //    currentWave++;
+    //    currentWaveText.text = "Current Wave: " + currentWave;
+    //    numOfZombiesToSpawn = (int)(numOfZombiesPrevWave * waveSpawnMultiplier);
+    //    SpawnZombies();
+    //}
 
 }
