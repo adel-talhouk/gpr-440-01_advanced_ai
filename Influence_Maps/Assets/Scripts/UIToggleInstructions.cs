@@ -7,7 +7,15 @@ public class UIToggleInstructions : MonoBehaviour
 {
     public GameObject instructionsText;
 
-    public void ToggleInstructions()
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            ToggleInstructions();
+        }
+    }
+
+    void ToggleInstructions()
     {
         instructionsText.SetActive(!instructionsText.activeSelf);
     }

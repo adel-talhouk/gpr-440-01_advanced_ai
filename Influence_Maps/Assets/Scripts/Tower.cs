@@ -30,6 +30,16 @@ public class Tower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Check if there is a zombie in a cell
+        if (mostInfectedCell.ZombiesInCell > 0)
+            zombieInCell = true;
+        else
+            zombieInCell = false;
+
+        //Fire on a cooldown
+        if (zombieInCell && canFire)
+            StartCoroutine(AttackCell(mostInfectedCell));
+
         //Find a new cell with the highest zombie count
         foreach (Cell cell in cellsInRange)
         {
@@ -44,31 +54,6 @@ public class Tower : MonoBehaviour
                 }
             }
         }
-
-        //Check if there is a zombie in a cell
-        if (mostInfectedCell.ZombiesInCell > 0)
-            zombieInCell = true;
-        else
-            zombieInCell = false;
-
-        //Fire on a cooldown
-        if (zombieInCell && canFire)
-            StartCoroutine(AttackCell(mostInfectedCell));
-
-        ////Find a new cell with the highest zombie count
-        //foreach (Cell cell in cellsInRange)
-        //{
-        //    //If a cell has a zombie in it
-        //    if (cell.ZombiesInCell > 0)
-        //    {
-        //        //See if it is greater than the highest zombie count cell
-        //        if (cell.ZombiesInCell > mostInfectedCell.ZombiesInCell)
-        //        {
-        //            //Update the most infected cell
-        //            mostInfectedCell = cell;
-        //        }
-        //    }
-        //}
     }
 
     public void SetCellsInRange(Collider2D[] colliders)

@@ -18,6 +18,7 @@ public class TowerManager : MonoBehaviour
     public GameObject cannonProjectile;
     public float cannonProjectileMoveSpeed = 5f;
     [Range(0.5f, 5.0f)] public float cannonRange = 2.5f;
+    [Range(0.5f, 2.0f)] public float cannonMaxInfluence = 1.25f;
     public float cannonProjectileLifeSpan = 1.5f;
     public float cannonDamagePerProjectile = 5f;
     public float cannonFireRatePerSec = 2f;
@@ -27,6 +28,7 @@ public class TowerManager : MonoBehaviour
     public GameObject minigunProjectile;
     public float minigunProjectileMoveSpeed = 7.5f;
     [Range(0.5f, 5.0f)] public float minigunRange = 4f;
+    [Range(0.5f, 2.0f)] public float minigunMaxInfluence = 2f;
     public float minigunProjectileLifeSpan = 1.5f;
     public float minigunDamagePerProjectile = 2f;
     public float minigunFireRatePerSec = 5f;
@@ -37,7 +39,7 @@ public class TowerManager : MonoBehaviour
     public TextMeshProUGUI cashAmountText;
 
     //Private data
-    int currentCash;
+    [HideInInspector] public int currentCash;
     [HideInInspector] public bool hasSpawnedTowers = false;
     GridManager gridManager;
 
@@ -115,7 +117,7 @@ public class TowerManager : MonoBehaviour
                     hasSpawnedTowers = true;
 
                     //Update influence map
-                    gridManager.ApplyInfluence(pos, cannonRange, 1f);
+                    gridManager.ApplyInfluence(pos, cannonRange, cannonMaxInfluence);
 
                     //Set data
                     cannon.GetComponent<Tower>().projectilePrefab = cannonProjectile;
@@ -127,7 +129,7 @@ public class TowerManager : MonoBehaviour
                     //Set the cells the tower has influence over
                     cannon.GetComponent<Tower>().SetCellsInRange(Physics2D.OverlapCircleAll(pos, cannonRange));
 
-                    //Pay for it you greedy mf
+                    //Pay for it
                     currentCash -= cost;
                     cashAmountText.text = "$" + currentCash;
                 }
@@ -139,7 +141,7 @@ public class TowerManager : MonoBehaviour
                     hasSpawnedTowers = true;
 
                     //Update influence map
-                    gridManager.ApplyInfluence(pos, minigunRange, 1f);
+                    gridManager.ApplyInfluence(pos, minigunRange, minigunMaxInfluence);
 
                     //Set data
                     minigun.GetComponent<Tower>().projectilePrefab = minigunProjectile;
@@ -151,7 +153,7 @@ public class TowerManager : MonoBehaviour
                     //Set the cells the tower has influence over
                     minigun.GetComponent<Tower>().SetCellsInRange(Physics2D.OverlapCircleAll(pos, minigunRange));
 
-                    //Pay for it you greedy mf
+                    //Pay for it
                     currentCash -= cost;
                     cashAmountText.text = "$" + currentCash;
                 }

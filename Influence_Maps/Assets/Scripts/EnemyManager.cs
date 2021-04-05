@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class EnemyManager : MonoBehaviour
@@ -8,7 +9,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject zombiePrefab;
     [Range(1.5f, 5f)] public float zombieMinSpeed = 1.5f;
     [Range(1.5f, 5f)] public float zombieMaxSpeed = 5f;
-    [Range(15f, 50f)] public float zombieMaxHealth = 20f;
+    [Range(5f, 20f)] public float zombieMaxHealth = 10f;
     public Vector2 zombieSeekLocation;
     public Vector2 spawnBoundsX;
     public Vector2 spawnBoundsY;
@@ -108,6 +109,13 @@ public class EnemyManager : MonoBehaviour
     {
         numOfZombiesAlive--;
         towerManager.IncreaseCash(profitPerKill);
+    }
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene("GameOver");
+        ScoreManager.waveNumber = currentWave;
+        ScoreManager.cashNumber = towerManager.currentCash;
     }
 
     //IEnumerator StartNextWave()

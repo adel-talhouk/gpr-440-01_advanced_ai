@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class ZombieBehaviour : MonoBehaviour
@@ -16,7 +17,6 @@ public class ZombieBehaviour : MonoBehaviour
     //Private data
     float currentHealth;
     List<Cell> bestPath;
-    //Vector2 position2D;
     Cell currentSeekNode;
     bool hasFoundPath = false;
     bool hasReachedDestination = false;
@@ -28,7 +28,6 @@ public class ZombieBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         bestPath = new List<Cell>();
-        //position2D = new Vector2(transform.position.x, transform.position.y);
         currentSeekNode = null;
         bestPath = new List<Cell>();
 
@@ -104,9 +103,7 @@ public class ZombieBehaviour : MonoBehaviour
             List<Cell> neighbouringNodes = currentNode.GetNeighbouringCells();
             foreach (Cell neighbour in neighbouringNodes)
             {
-                //Calculate cost - Manhattan distance + node cost + cost so far
-                //float heuristicCost = Mathf.Abs(destinationNode.transform.position.x - neighbour.transform.position.x)
-                //    + Mathf.Abs(destinationNode.transform.position.y - neighbour.transform.position.y);
+                //Calculate cost - costSoFar + neighbourCost + heuristicCost
                 float heuristicCost = (destinationNode.transform.position - neighbour.transform.position).magnitude;
                 float estimatedCost = costSoFar[currentNode] + neighbour.cost + heuristicCost;
 
@@ -151,6 +148,8 @@ public class ZombieBehaviour : MonoBehaviour
             //Check to see if the zombie has reached the destination
             if (bestPath.Count == 1)
             {
+                //Game Over
+                enemyManager.GameOver();
                 enemyManager.MarkZombieDead();
                 Destroy(gameObject);
                 hasReachedDestination = true;
