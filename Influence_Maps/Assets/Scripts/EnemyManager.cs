@@ -32,7 +32,7 @@ public class EnemyManager : MonoBehaviour
     TowerManager towerManager;
     GridManager gridManager;
 
-    bool eatShitZombieScum = false;
+    //bool eatShitZombieScum = false;
 
     // Start is called before the first frame update
     void Start()
@@ -62,14 +62,14 @@ public class EnemyManager : MonoBehaviour
             shouldStartWave = false;
 
             //Start the next wave
-            //StartCoroutine(StartNextWave());
+            StartCoroutine(StartNextWave());
 
-            if (!eatShitZombieScum)
-            {
-                eatShitZombieScum = true;
-                numOfZombiesToSpawn = 5;
-                SpawnZombies();
-            }
+            //if (!eatShitZombieScum)
+            //{
+            //    eatShitZombieScum = true;
+            //    numOfZombiesToSpawn = 5;
+            //    SpawnZombies();
+            //}
         }
     }
 

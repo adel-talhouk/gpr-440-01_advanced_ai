@@ -1038,7 +1038,6 @@ MonoBehaviour:
   minigunFireRatePerSec: 5
   currentTowerText: {fileID: 811977084}
   cashAmountText: {fileID: 1312916706}
-  currentCash: 0
   hasSpawnedTowers: 0
 --- !u!1 &1312916704
 GameObject:

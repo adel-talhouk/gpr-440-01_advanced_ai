@@ -16,7 +16,7 @@ public class ZombieBehaviour : MonoBehaviour
     //Private data
     float currentHealth;
     List<Cell> bestPath;
-    Vector2 position2D;
+    //Vector2 position2D;
     Cell currentSeekNode;
     bool hasFoundPath = false;
     bool hasReachedDestination = false;
@@ -28,7 +28,7 @@ public class ZombieBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         bestPath = new List<Cell>();
-        position2D = new Vector2(transform.position.x, transform.position.y);
+        //position2D = new Vector2(transform.position.x, transform.position.y);
         currentSeekNode = null;
         bestPath = new List<Cell>();
 
@@ -63,7 +63,6 @@ public class ZombieBehaviour : MonoBehaviour
     {
         //Open and closed lists
         List<Cell> openList = new List<Cell>();
-        //List<Cell> closedList = new List<Cell>();
         Dictionary<Cell, Cell> cameFrom = new Dictionary<Cell, Cell>();
         Dictionary<Cell, float> costSoFar = new Dictionary<Cell, float>();
 
@@ -100,34 +99,6 @@ public class ZombieBehaviour : MonoBehaviour
                 hasFoundPath = true;
                 return;
             }
-
-            //float cheapestCost = float.MaxValue;
-            //Cell cheapestNode = currentNode;    //currentNode by default
-
-            ////Iterate through the open list
-            //foreach (Cell node in openList)
-            //{
-            //    //Find the cheapest node
-            //    float nodeCost = node.cost;
-
-            //    //Check if we have a cheaper cost
-            //    if (nodeCost < cheapestCost)
-            //    {
-            //        cheapestCost = nodeCost;
-
-            //        //Manhattan distance
-            //        float heuristicCost = Mathf.Abs(currentNode.transform.position.x - destinationNode.transform.position.x)
-            //            + Mathf.Abs(currentNode.transform.position.y - destinationNode.transform.position.y);
-            //        float estimatedCost = cheapestCost + heuristicCost;
-
-            //        //Set this node as the cheapest
-            //        cheapestNode = node;
-            //        costSoFar[node] = estimatedCost;
-            //    }
-            //}
-
-            ////Set the currentNode to the cheapest one we found
-            //currentNode = cheapestNode;
 
             //Get the neighbours and add them to the cameFrom dictionary
             List<Cell> neighbouringNodes = currentNode.GetNeighbouringCells();
@@ -168,27 +139,27 @@ public class ZombieBehaviour : MonoBehaviour
     void FollowPath()
     {
         //Set the current seek node
-        currentSeekNode = bestPath[0];
-
-        //Get the position
-        Vector2 nodePos = currentSeekNode.transform.position;
+        currentSeekNode = bestPath[bestPath.Count - 1];
+        //currentSeekNode = bestPath[0];
 
         //Move towards it
-        //transform.position = Vector3.MoveTowards(position2D, nodePos, moveSpeed);
-        rb.velocity = (nodePos - position2D) * moveSpeed * Time.deltaTime;
+        rb.velocity = (currentSeekNode.transform.position - transform.position).normalized * moveSpeed;
 
         //If close enough, continue
-        if (Vector2.Distance(position2D, nodePos) <= 0.1f)
+        if (Vector2.Distance(transform.position, currentSeekNode.transform.position) <= 0.5f)
         {
             //Check to see if the zombie has reached the destination
-            if (bestPath.Count == 0)
+            if (bestPath.Count == 1)
             {
+                enemyManager.MarkZombieDead();
+                Destroy(gameObject);
                 hasReachedDestination = true;
                 return;
             }
 
             //Done with this node
-            bestPath.RemoveAt(0);
+            bestPath.RemoveAt(bestPath.Count - 1);
+            //bestPath.RemoveAt(0);
         }
     }
 }
