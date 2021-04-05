@@ -105,9 +105,9 @@ public class ZombieBehaviour : MonoBehaviour
             foreach (Cell neighbour in neighbouringNodes)
             {
                 //Calculate cost - Manhattan distance + node cost + cost so far
-                float heuristicCost = Mathf.Abs(neighbour.transform.position.x - destinationNode.transform.position.x)
-                    + Mathf.Abs(neighbour.transform.position.y - destinationNode.transform.position.y);
-                float estimatedCost = costSoFar[currentNode] + neighbour.cost + heuristicCost;
+                float heuristicCost = Mathf.Abs(destinationNode.transform.position.x - neighbour.transform.position.x)
+                    + Mathf.Abs(destinationNode.transform.position.y - neighbour.transform.position.y);
+                float estimatedCost = costSoFar[currentNode] + neighbour.cost/* + heuristicCost*/;
 
                 //If there is not cost for the neighbour
                 if (!costSoFar.ContainsKey(neighbour))

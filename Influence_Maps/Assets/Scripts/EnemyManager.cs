@@ -32,7 +32,6 @@ public class EnemyManager : MonoBehaviour
     TowerManager towerManager;
     GridManager gridManager;
 
-    //bool eatShitZombieScum = false;
 
     // Start is called before the first frame update
     void Start()
@@ -73,13 +72,6 @@ public class EnemyManager : MonoBehaviour
             currentWaveText.text = "Current Wave: " + currentWave;
             numOfZombiesToSpawn = (int)(numOfZombiesPrevWave * waveSpawnMultiplier);
             SpawnZombies();
-
-            //if (!eatShitZombieScum)
-            //{
-            //    eatShitZombieScum = true;
-            //    numOfZombiesToSpawn = 5;
-            //    SpawnZombies();
-            //}
         }
     }
 
@@ -133,5 +125,4 @@ public class EnemyManager : MonoBehaviour
     //    numOfZombiesToSpawn = (int)(numOfZombiesPrevWave * waveSpawnMultiplier);
     //    SpawnZombies();
     //}
-
 }
