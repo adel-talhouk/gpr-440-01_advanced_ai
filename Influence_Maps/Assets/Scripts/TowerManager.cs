@@ -33,6 +33,7 @@ public class TowerManager : MonoBehaviour
 
     [Header("UI")]
     public TextMeshProUGUI currentTowerText;
+    public TextMeshProUGUI towerCostText;
     public TextMeshProUGUI cashAmountText;
 
     //Private data
@@ -49,6 +50,7 @@ public class TowerManager : MonoBehaviour
         //Current tower
         currentTower = TowerType.cannon;
         currentTowerText.text = "Current Tower: Cannon";
+        towerCostText.text = "Cost: $" + cannonCost;
 
         gridManager = FindObjectOfType<GridManager>();
     }
@@ -63,11 +65,13 @@ public class TowerManager : MonoBehaviour
             {
                 currentTower = TowerType.minigun;
                 currentTowerText.text = "Current Tower: Minigun";
+                towerCostText.text = "Cost: $" + minigunCost;
             }
             else if (currentTower == TowerType.minigun)
             {
                 currentTower = TowerType.cannon;
                 currentTowerText.text = "Current Tower: Cannon";
+                towerCostText.text = "Cost: $" + cannonCost;
             }
         }
 

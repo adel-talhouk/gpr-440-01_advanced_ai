@@ -105,9 +105,10 @@ public class ZombieBehaviour : MonoBehaviour
             foreach (Cell neighbour in neighbouringNodes)
             {
                 //Calculate cost - Manhattan distance + node cost + cost so far
-                float heuristicCost = Mathf.Abs(destinationNode.transform.position.x - neighbour.transform.position.x)
-                    + Mathf.Abs(destinationNode.transform.position.y - neighbour.transform.position.y);
-                float estimatedCost = costSoFar[currentNode] + neighbour.cost/* + heuristicCost*/;
+                //float heuristicCost = Mathf.Abs(destinationNode.transform.position.x - neighbour.transform.position.x)
+                //    + Mathf.Abs(destinationNode.transform.position.y - neighbour.transform.position.y);
+                float heuristicCost = (destinationNode.transform.position - neighbour.transform.position).magnitude;
+                float estimatedCost = costSoFar[currentNode] + neighbour.cost + heuristicCost;
 
                 //If there is not cost for the neighbour
                 if (!costSoFar.ContainsKey(neighbour))
@@ -140,7 +141,6 @@ public class ZombieBehaviour : MonoBehaviour
     {
         //Set the current seek node
         currentSeekNode = bestPath[bestPath.Count - 1];
-        //currentSeekNode = bestPath[0];
 
         //Move towards it
         rb.velocity = (currentSeekNode.transform.position - transform.position).normalized * moveSpeed;
@@ -159,7 +159,6 @@ public class ZombieBehaviour : MonoBehaviour
 
             //Done with this node
             bestPath.RemoveAt(bestPath.Count - 1);
-            //bestPath.RemoveAt(0);
         }
     }
 }
