@@ -32,6 +32,8 @@ public class EnemyManager : MonoBehaviour
     TowerManager towerManager;
     GridManager gridManager;
 
+    //bool eatShitZombieScum = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +47,7 @@ public class EnemyManager : MonoBehaviour
         towerManager = FindObjectOfType<TowerManager>();
         gridManager = FindObjectOfType<GridManager>();
 
-        //StartCoroutine(StartNextWave());
+        StartCoroutine(StartNextWave());
     }
 
     // Update is called once per frame
@@ -63,6 +65,13 @@ public class EnemyManager : MonoBehaviour
 
             //Start the next wave
             StartCoroutine(StartNextWave());
+
+            //if (!eatShitZombieScum)
+            //{
+            //    eatShitZombieScum = true;
+            //    numOfZombiesToSpawn = 1;
+            //    SpawnZombies();
+            //}
         }
     }
 
@@ -89,7 +98,7 @@ public class EnemyManager : MonoBehaviour
             gridManager.GetCellAt(zombieSeekLocation).GetComponent<SpriteRenderer>().color = Color.yellow;
 
             //Find path
-            zombie.GetComponent<ZombieBehaviour>().FindPathAStar(gridManager.GetCellAt(spawnPos), gridManager.GetCellAt(zombieSeekLocation));
+            zombie.GetComponent<ZombieBehaviour>().SetAStarData(gridManager.GetCellAt(spawnPos), gridManager.GetCellAt(zombieSeekLocation));
         }
 
         numOfZombiesPrevWave = numOfZombiesAlive;
