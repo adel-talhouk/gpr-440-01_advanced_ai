@@ -414,9 +414,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zombiePrefab: {fileID: 1137557554973858228, guid: 23b35cf4e624a424cbbf15d1f3304cbb, type: 3}
   zombieMinSpeed: 1.5
-  zombieMaxSpeed: 2.55
+  zombieMaxSpeed: 2.15
   zombieMaxHealth: 8
-  zombieSeekLocation: {x: 2.06, y: 1.34}
+  zombieSeekLocation: {x: 0.2, y: 0.3}
   spawnBoundsX: {x: 16.5, y: 16.5}
   spawnBoundsY: {x: 1.05, y: 8.59}
   zombiesPerWave: 20
@@ -424,7 +424,7 @@ MonoBehaviour:
   timeToStartWave: 2
   currentWaveText: {fileID: 127766921}
   profitPerKill: 50
-  profitPerWave: 200
+  profitPerWave: 150
 --- !u!1 &385534569
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,7 +1066,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371136599}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.06, y: 1.34, z: 0}
+  m_LocalPosition: {x: 0.2, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -84,6 +84,10 @@ public class EnemyManager : MonoBehaviour
             float moveSpeed = Random.Range(zombieMinSpeed, zombieMaxSpeed);
             Vector2 spawnPos = new Vector2(Random.Range(spawnBoundsX.x, spawnBoundsX.y),
                 Random.Range(spawnBoundsY.x, spawnBoundsY.y));
+            
+            //Speed them up as the rounds go by
+            if (moveSpeed % 5 == 0)
+                moveSpeed *= 1.5f;
 
             //Spawn zombie
             GameObject zombie = Instantiate(zombiePrefab, spawnPos, Quaternion.identity, transform);
